@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "next build",
     "db:generate": "prisma migrate dev",
     "db:migrate": "prisma migrate deploy",
@@ -37,6 +38,8 @@
     "zod": "^3.23.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@types/eslint": "^8.56.10",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
@@ -55,5 +58,21 @@
   "ct3aMetadata": {
     "initVersion": "7.36.2"
   },
-  "packageManager": "pnpm@9.6.0"
+  "packageManager": "pnpm@9.6.0",
+  "keywords": [
+    "FEU Tech",
+    "ACM",
+    "Student Chapter",
+    "FEU Tech ACM",
+    "FEU Tech ACM Student Chapter",
+    "Application",
+    "Web Application",
+    "FEU Tech ACM-X",
+    "FEU Tech ACM-X Application",
+    "FEU Tech ACM-X Web Application",
+    "FEU Tech ACM-X Web Application",
+    "Official Application",
+    "Google Play Store",
+    "Website"
+  ]
 }
