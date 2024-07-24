@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "background_color": "#0b001a",
+  "categories": [
+    "education",
+    "events",
+    "finance",
+    "multimedia",
+    "network",
+    "news",
+    "photo",
+    "photo & video",
+    "productivity",
+    "reference",
+    "social",
+    "social networking",
+    "utilities"
+  ],
+  "description": "The FEU Tech ACM Organization's official and premier cross-platform application developed to serve as the central platform for communication, collaboration, and promotion of every ACM member and officer in education, opportunities, and beyond.",
+  "dir": "ltr",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "fullscreen",
+    "window-controls-overlay",
+    "browser"
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=app.vercel.acmx.twa",
+      "id": "app.vercel.acmx.twa"
+    },
+    {
+      "platform": "webapp",
+      "url": "https://acmx.vercel.app",
+      "id": "https://acmx.vercel.app"
+    },
+    {
+      "platform": "windows",
+      "url": "https://apps.microsoft.com/detail/9NN45TR81J26?launch=true&mode=mini",
+      "id": "9NN45TR81J26"
+    }
+  ],
+
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "handle_links": "preferred",
+  "icons": [
+    {
+      "sizes": "36x36",
+      "src": "/android-chrome-36x36.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "48x48",
+      "src": "/android-chrome-48x48.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "72x72",
+      "src": "/android-chrome-72x72.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "96x96",
+      "src": "/android-chrome-96x96.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "144x144",
+      "src": "/android-chrome-144x144.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "192x192",
+      "src": "/android-chrome-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "256x256",
+      "src": "/android-chrome-256x256.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "384x384",
+      "src": "/android-chrome-384x384.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "/android-chrome-512x512.png",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "id": "/",
+  "iarc_rating_id": "cca659cf-ecd0-4f34-92d6-079021194da5",
+  "lang": "en",
+  "launch_handler": {
+    "client_mode": ["auto", "navigate-existing"]
+  },
+  "name": "FEU Tech ACM-X",
+  "orientation": "natural",
+  "scope": "/",
+  "scope_extensions": [
+    {
+      "origin": "https://acmx.vercel.app"
+    }
+  ],
+  "prefer_related_applications": false,
+  "short_name": "FIT ACM-X",
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "url": "/",
+      "description": "ACM-X Home",
+      "icons": [
+        { "src": "/android-chrome-36x36.png", "sizes": "36x36" },
+        { "src": "/android-chrome-48x48.png", "sizes": "48x48" },
+        { "src": "/android-chrome-72x72.png", "sizes": "72x72" },
+        { "src": "/android-chrome-96x96.png", "sizes": "96x96" },
+        { "src": "/android-chrome-144x144.png", "sizes": "144x144" },
+        { "src": "/android-chrome-192x192.png", "sizes": "192x192" }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "url": "/app/dashboard",
+      "description": "ACM-X Dashboard",
+      "icons": [
+        { "src": "/android-chrome-36x36.png", "sizes": "36x36" },
+        { "src": "/android-chrome-48x48.png", "sizes": "48x48" },
+        { "src": "/android-chrome-72x72.png", "sizes": "72x72" },
+        { "src": "/android-chrome-96x96.png", "sizes": "96x96" },
+        { "src": "/android-chrome-144x144.png", "sizes": "144x144" },
+        { "src": "/android-chrome-192x192.png", "sizes": "192x192" }
+      ]
+    },
+    {
+      "name": "Forum",
+      "short_name": "Forum",
+      "url": "/app/forum",
+      "description": "ACM-X Forum",
+      "icons": [
+        { "src": "/android-chrome-36x36.png", "sizes": "36x36" },
+        { "src": "/android-chrome-48x48.png", "sizes": "48x48" },
+        { "src": "/android-chrome-72x72.png", "sizes": "72x72" },
+        { "src": "/android-chrome-96x96.png", "sizes": "96x96" },
+        { "src": "/android-chrome-144x144.png", "sizes": "144x144" },
+        { "src": "/android-chrome-192x192.png", "sizes": "192x192" }
+      ]
+    },
+    {
+      "name": "Events",
+      "short_name": "Events",
+      "url": "/app/events",
+      "description": "ACM-X Events",
+      "icons": [
+        { "src": "/android-chrome-36x36.png", "sizes": "36x36" },
+        { "src": "/android-chrome-48x48.png", "sizes": "48x48" },
+        { "src": "/android-chrome-72x72.png", "sizes": "72x72" },
+        { "src": "/android-chrome-96x96.png", "sizes": "96x96" },
+        { "src": "/android-chrome-144x144.png", "sizes": "144x144" },
+        { "src": "/android-chrome-192x192.png", "sizes": "192x192" }
+      ]
+    }
+  ],
+  "start_url": "https://acmx.vercel.app",
+  "theme_color": "#0b001a"
+}
