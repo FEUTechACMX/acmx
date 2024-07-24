@@ -1,0 +1,25 @@
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: "pnpm"
+          cache-dependency-path: "./pnpm-lock.yaml"
+          node-version: 20
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build app
+        run: pnpm build
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        name: Semantic release
+        run: pnpm semantic-release
+
+name: Semantic release
+on:
+  push:
+    branches:
+      - master
