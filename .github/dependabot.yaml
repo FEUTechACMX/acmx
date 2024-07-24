@@ -1,0 +1,34 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+updates:
+  - directory: "/"
+    labels:
+      - "github-actions"
+    package-ecosystem: "github-actions"
+    reviewers:
+      - "alphacoma18"
+      - "ColasRab"
+    schedule:
+      day: "monday"
+      interval: "weekly"
+      time: "09:00"
+      timezone: "Asia/Manila"
+    target-branch: "master"
+
+  - directory: "/" # Location of package manifests
+    labels:
+      - "pnpm"
+      - "dependencies"
+    package-ecosystem: "npm" # See documentation for possible values
+    reviewers:
+      - "alphacoma18"
+    schedule:
+      day: "monday"
+      interval: "weekly"
+      time: "09:00"
+      timezone: "Asia/Manila"
+    target-branch: "master"
+version: 2
