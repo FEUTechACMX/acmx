@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { GithubIcon } from 'lucide-react';
+import { CodeXmlIcon, GithubIcon, RocketIcon } from 'lucide-react';
 import Image from "next/image";
+import courseJSON from "public/data/json/courses.json";
 import { useEffect, useState } from 'react';
 import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
@@ -26,20 +27,7 @@ export default function Component() {
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
 
-    const courses = [
-        { code: 'CS101', name: 'Introduction to Computer Science' },
-        { code: 'MATH201', name: 'Advanced Calculsus' },
-        { code: 'ENG102', name: 'English Composition' },
-        { code: 'PHYS301', name: 'Quantum Mechanics' },
-        { code: 'BIO150', name: 'Cell Biology' },
-        { code: 'CHEM202', name: 'Organic Chemistry' },
-        { code: 'HIST105', name: 'World History' },
-        { code: 'ECON201', name: 'Microeconomics' },
-        { code: 'PSYCH101', name: 'Introduction to Psychology' },
-        { code: 'ART110', name: 'Art History' },
-    ];
-
-    const filteredCourses = courses.filter(course =>
+    const filteredCourses = courseJSON.filter(course =>
         course.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
         course.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -97,8 +85,8 @@ export default function Component() {
     }, [searchTerm]);
 
     return (
-        <div className="container w-screen h-screen flex items-center justify-center flex-col mx-auto px-4 py-8 max-w-4xl">
-            <div className="flex flex-col items-center mb-8">
+        <div className="container w-screen h-screen sm:flex items-center justify-center flex-col mx-auto px-4 py-8 max-w-4xl">
+            <div className="flex flex-col items-center mb-4">
                 <Image
                     src="/acm/FIT_ACM.png"
                     alt="FEU Tech ACM Logo"
@@ -158,9 +146,9 @@ export default function Component() {
                                             <SelectValue placeholder="Select program" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="cs">BSCSSE</SelectItem>
-                                            <SelectItem value="eng">BSCSDS</SelectItem>
-                                            <SelectItem value="bus">BSCSAI</SelectItem>
+                                            <SelectItem value="BSCSSE">BSCSSE</SelectItem>
+                                            <SelectItem value="BSCSDS">BSCSDS</SelectItem>
+                                            <SelectItem value="BSCSAI">BSCSAI</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -254,7 +242,7 @@ export default function Component() {
                                     }} />
                                     <label
                                         htmlFor="compliance"
-                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                     >
                                         I have fully read and understood the undertaking and agree to abide by the rules and regulations of the college.                                    </label>
                                 </div>
@@ -274,15 +262,25 @@ export default function Component() {
                 <p className="mb-2">
                     <strong>Disclaimer:</strong> This generator does not store any user data.
                 </p>
-                <div className="flex justify-center items-center space-x-2">
-                    <GithubIcon className="h-4 w-4" />
+                <div className="block sm:flex justify-center items-center space-x-2">
+                    <div className="space-x-2">
+                        <GithubIcon className="h-4 w-4 inline" />
                     <a href="https://github.com/your-organization" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
                         GitHub Repository
                     </a>
-                    <GithubIcon className="h-4 w-4" />
+                    </div>
+                    <div className="space-x-2">
+                        <RocketIcon className="h-4 w-4 inline" />
                     <a href="https://github.com/your-organization" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
-                        Contributors
+                            Project ACM-X Team
                     </a>
+                    </div>
+                    <div className="space-x-2">
+                        <CodeXmlIcon className="h-4 w-4 inline" />
+                        <a href="https://github.com/your-organization" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+                            Join the Team
+                        </a>
+                    </div>
                 </div>
             </footer>
         </div>
