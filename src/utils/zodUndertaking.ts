@@ -20,3 +20,5 @@ export const zodUndertaking = z.object({
     signatureImg: z.instanceof(File),
     courses: z.array(z.string()),
 }) satisfies z.ZodType<UndertakingBody>;
+
+export const MAX_UNDERTAKING_IMG_SIZE = 5000000;
