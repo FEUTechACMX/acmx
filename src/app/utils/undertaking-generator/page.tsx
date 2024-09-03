@@ -13,7 +13,10 @@ import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { MAX_UNDERTAKING_IMG_SIZE } from "~/utils/zodUndertaking";
+import { env } from "~/env";
 import { zodUndertaking } from "~/utils/zodUndertaking";
+
 export default function Component() {
     const [fullName, setFullName] = useState('');
     const [studentNumber, setStudentNumber] = useState('');
@@ -35,37 +38,30 @@ export default function Component() {
     const pageCount = Math.ceil(filteredCourses.length / 5);
     const paginatedCourses = filteredCourses.slice((currentPage - 1) * 5, currentPage * 5);
 
-    const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    function handleImgUpload(e: React.ChangeEvent<HTMLInputElement>, setImg: (img: File) => void) {
         if (!e.target.files) {
             alert('No file selected');
             return;
         }
-        if (!e.target.files[0]) {
+        const file = e.target.files[0];
+        if (!file) {
             alert('Invalid file');
             return;
         }
-        if (e.target.files[0].size > 5000000) {
-            alert('File size exceeds 5MB limit');
+        if (file.size > MAX_UNDERTAKING_IMG_SIZE) {
+            alert(`File size exceeds ${MAX_UNDERTAKING_IMG_SIZE / 1000000}MB`);
             return;
         }
-        setSignatureImg(e.target.files[0]);
-    };
+        setImg(file);
+    }
+
+    const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        handleImgUpload(e, setSignatureImg);
+    }
 
     const handleIdUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.files) {
-            alert('No file selected');
-            return;
-        }
-        if (!e.target.files[0]) {
-            alert('Invalid file');
-            return;
-        }
-        if (e.target.files[0].size > 5000000) {
-            alert('File size exceeds 5MB limit');
-            return;
-        }
-        setIdImg(e.target.files[0]);
-    };
+        handleImgUpload(e, setIdImg);
+    }
 
     const handleCourseToggle = (courseCode: string) => {
         setCourses(prev =>
@@ -98,7 +94,7 @@ export default function Component() {
         formData.set("signatureImg", body.signatureImg);
 
         const res = await fetch(
-            `http://localhost:3000/api/utils/undertaking-generator`,
+            `${env.NEXT_PUBLIC_HOST_URL}/api/utils/undertaking-generator`,
             {
                 method: "POST",
                 body: formData,
@@ -106,7 +102,7 @@ export default function Component() {
         );
 
         if (!res.ok) {
-            alert("An error occurred while generating the undertaking");
+            alert(await res.text());
             return;
         }
 
@@ -211,11 +207,11 @@ export default function Component() {
                                 </div>
                                 <div>
                                     <Label htmlFor="signature">Signature Upload</Label>
-                                    <Input id="signature" type="file" accept="image/*" onChange={handleSignatureUpload} />
+                                    <Input id="signature" type="file" accept="image/png, image/gif, image/jpeg" onChange={handleSignatureUpload} />
                                 </div>
                                 <div>
                                     <Label htmlFor="id">ID Upload</Label>
-                                    <Input id="id" type="file" accept="image/*" onChange={handleIdUpload} />
+                                    <Input id="id" type="file" accept="image/png, image/gif, image/jpeg" onChange={handleIdUpload} />
                                 </div>
                             </motion.div>
                         </TabsContent>

@@ -1,14 +1,14 @@
-// "use server";
-// import AdmZip from "adm-zip";
+"use server";
 import { readFile } from "fs/promises";
-import { PDFDocument } from "pdf-lib";
-// import { z } from "zod";
 import jszip from "jszip";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { PDFDocument } from "pdf-lib";
 import contributors from "public/data/json/contributors.json";
 import undertakingEmbedImage from "~/utils/image";
+import serverWrapper from "~/utils/serverWrapper";
 import undertakingImgType from "~/utils/validImage";
 import { UndertakingBody, zodUndertaking } from "~/utils/zodUndertaking";
+import { MAX_UNDERTAKING_IMG_SIZE } from "~/utils/zodUndertaking";
 const contributorsBuffer = Buffer.from(JSON.stringify(contributors));
 
 interface ImgTypes {
@@ -114,7 +114,7 @@ const createTemplate = async (
 
   firstPage.drawText(studentNumber, {
     x: 400,
-    y: 110,
+    y: 108,
     size: reg,
   });
 
@@ -141,13 +141,7 @@ const createTemplate = async (
   return templatePdf.save();
 };
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-export const POST = async (req: NextRequest) => {
+export const POST = serverWrapper(async (req) => {
   const formData = await req.formData();
   const body = Object.fromEntries(formData.entries());
   body.courses = (body.courses as string).split(",") as unknown as FormDataEntryValue;
@@ -163,6 +157,9 @@ export const POST = async (req: NextRequest) => {
     signatureImg,
     enrollmentFormat,
   } = parsedBody;
+
+  if (idImg.size > MAX_UNDERTAKING_IMG_SIZE || signatureImg.size > MAX_UNDERTAKING_IMG_SIZE)
+    throw new Error("Image size too large");
 
   const [signature, id] = await Promise.all([
     signatureImg.arrayBuffer(),
@@ -211,4 +208,4 @@ export const POST = async (req: NextRequest) => {
       headers,
     },
   );
-};
+});
