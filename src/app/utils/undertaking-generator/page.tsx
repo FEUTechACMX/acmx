@@ -13,16 +13,16 @@ import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-
+import { zodUndertaking } from "~/utils/zodUndertaking";
 export default function Component() {
-    const [name, setName] = useState('');
+    const [fullName, setFullName] = useState('');
     const [studentNumber, setStudentNumber] = useState('');
     const [year, setYear] = useState('');
     const [program, setProgram] = useState('');
     const [enrollmentFormat, setEnrollmentFormat] = useState('');
-    const [signature, setSignature] = useState<File | null>(null);
-    const [id, setId] = useState<File | null>(null);
-    const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+    const [signatureImg, setSignatureImg] = useState<File | null>(null);
+    const [idImg, setIdImg] = useState<File | null>(null);
+    const [courses, setCourses] = useState<string[]>([]);
     const [complianceChecked, setComplianceChecked] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -48,7 +48,7 @@ export default function Component() {
             alert('File size exceeds 5MB limit');
             return;
         }
-        setSignature(e.target.files[0]);
+        setSignatureImg(e.target.files[0]);
     };
 
     const handleIdUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,20 +64,65 @@ export default function Component() {
             alert('File size exceeds 5MB limit');
             return;
         }
-        setId(e.target.files[0]);
+        setIdImg(e.target.files[0]);
     };
 
     const handleCourseToggle = (courseCode: string) => {
-        setSelectedCourses(prev =>
+        setCourses(prev =>
             prev.includes(courseCode)
                 ? prev.filter(code => code !== courseCode)
                 : [...prev, courseCode]
         );
     };
 
-    const handleGenerate = () => {
-        // Here you would implement the logic to generate the undertaking
-        console.log('Generating undertaking...');
+    const handleSubmit = async () => {
+        const body = zodUndertaking.parse({
+            fullName,
+            studentNumber,
+            year,
+            program,
+            courses,
+            idImg,
+            signatureImg,
+            enrollmentFormat,
+        });
+
+        const formData = new FormData();
+        formData.set("fullName", body.fullName);
+        formData.set("studentNumber", body.studentNumber);
+        formData.set("year", body.year);
+        formData.set("program", body.program);
+        formData.set("enrollmentFormat", body.enrollmentFormat);
+        formData.set("courses", body.courses.toString());
+        formData.set("idImg", body.idImg);
+        formData.set("signatureImg", body.signatureImg);
+
+        const res = await fetch(
+            `http://localhost:3000/api/utils/undertaking-generator`,
+            {
+                method: "POST",
+                body: formData,
+            },
+        );
+
+        if (!res.ok) {
+            alert("An error occurred while generating the undertaking");
+            return;
+        }
+
+        console.log("Downloading");
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.style.display = "none";
+        link.href = url;
+        link.download = "CONFIDENTIALITY-UNDERTAKING.zip";
+        document.body.appendChild(link);
+
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+        console.log("Downloaded");
     };
 
     useEffect(() => {
@@ -119,7 +164,7 @@ export default function Component() {
                             >
                                 <div>
                                     <Label htmlFor="name">Name</Label>
-                                    <Input id="name" value={name} onChange={(e) => setName(e.target.value)} />
+                                    <Input id="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
                                 </div>
                                 <div>
                                     <Label htmlFor="studentNumber">Student Number</Label>
@@ -159,8 +204,8 @@ export default function Component() {
                                             <SelectValue placeholder="Select format" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="fullTime">FEU Tech - Course Code</SelectItem>
-                                            <SelectItem value="partTime">FEU Institute of Technology - Course Code</SelectItem>
+                                            <SelectItem value="1">FEU Tech - Course Code</SelectItem>
+                                            <SelectItem value="2">FEU Institute of Technology - Course Code</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -202,7 +247,7 @@ export default function Component() {
                                             <TableRow key={course.code}>
                                                 <TableCell className="font-medium">
                                                     <Checkbox
-                                                        checked={selectedCourses.includes(course.code)}
+                                                        checked={courses.includes(course.code)}
                                                         onCheckedChange={() => handleCourseToggle(course.code)}
                                                     />
                                                 </TableCell>
@@ -247,7 +292,7 @@ export default function Component() {
                                         I have fully read and understood the undertaking and agree to abide by the rules and regulations of the college.                                    </label>
                                 </div>
                                 <Button
-                                    onClick={handleGenerate}
+                                    onClick={handleSubmit}
                                     disabled={!complianceChecked}
                                     className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white"
                                 >
