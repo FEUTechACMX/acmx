@@ -1,36 +1,15 @@
-import AdmZip from "adm-zip";
+// "use server";
+// import AdmZip from "adm-zip";
 import { readFile } from "fs/promises";
-import { NextResponse } from "next/server";
 import { PDFDocument } from "pdf-lib";
-import { z } from "zod";
+// import { z } from "zod";
+import jszip from "jszip";
+import { NextRequest, NextResponse } from "next/server";
+import contributors from "public/data/json/contributors.json";
 import undertakingEmbedImage from "~/utils/image";
 import undertakingImgType from "~/utils/validImage";
-
-import { NextRequest } from "next/server";
-import contributors from "public/data/json/contributors.json";
+import { UndertakingBody, zodUndertaking } from "~/utils/zodUndertaking";
 const contributorsBuffer = Buffer.from(JSON.stringify(contributors));
-
-export interface UndertakingBody {
-  fullName: string;
-  idImg: File;
-  signatureImg: File;
-  enrollmentFormat: string;
-  studentNumber: string;
-  year: string;
-  program: string;
-  courses: string[];
-}
-
-const zodUndertaking = z.object({
-  fullName: z.string(),
-  idImg: z.instanceof(File),
-  signatureImg: z.instanceof(File),
-  enrollmentFormat: z.string(),
-  studentNumber: z.string(),
-  year: z.string(),
-  program: z.string(),
-  courses: z.array(z.string()),
-}) satisfies z.ZodType<UndertakingBody>;
 
 interface ImgTypes {
   idImgType: number;
@@ -89,7 +68,6 @@ function setDimWithAspectRatio(width: number, height: number, maxDims: dim) {
 }
 
 const source = process.cwd() + "/public/data/CONFIDENTIALITY-UNDERTAKING.pdf";
-const TEMPLATE_PDF_BUFFER = await readFile(source);
 const createTemplate = async (
   signatureBytes: Buffer,
   idBytes: Buffer,
@@ -97,7 +75,7 @@ const createTemplate = async (
   rest: UndertakingBodyPartial,
 ) => {
   const { fullName, year, program, studentNumber } = rest;
-  const templatePdf = await PDFDocument.load(TEMPLATE_PDF_BUFFER);
+  const templatePdf = await PDFDocument.load(await readFile(source));
   const { idImgType, signatureImgType } = imgTypes;
   const idImgPromise = undertakingEmbedImage(idBytes, idImgType, templatePdf);
   const sigImgPromise = undertakingEmbedImage(
@@ -162,9 +140,19 @@ const createTemplate = async (
 
   return templatePdf.save();
 };
-const POST = async (req: NextRequest, res: NextResponse) => {
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export const POST = async (req: NextRequest) => {
   const formData = await req.formData();
-  const body = zodUndertaking.parse(formData);
+  const body = Object.fromEntries(formData.entries());
+  body.courses = (body.courses as string).split(",") as unknown as FormDataEntryValue;
+  const parsedBody = zodUndertaking.parse(body);
+
   const {
     fullName,
     studentNumber,
@@ -174,7 +162,7 @@ const POST = async (req: NextRequest, res: NextResponse) => {
     idImg,
     signatureImg,
     enrollmentFormat,
-  } = body;
+  } = parsedBody;
 
   const [signature, id] = await Promise.all([
     signatureImg.arrayBuffer(),
@@ -182,7 +170,6 @@ const POST = async (req: NextRequest, res: NextResponse) => {
   ]);
   const idImgType = undertakingImgType(idImg.type);
   const signatureImgType = undertakingImgType(signatureImg.type);
-  console.log("Generating PDFs...");
   const templatePdfBytes = await createTemplate(
     Buffer.from(signature),
     Buffer.from(id),
@@ -197,9 +184,9 @@ const POST = async (req: NextRequest, res: NextResponse) => {
       studentNumber,
     },
   );
-  const zip = new AdmZip();
-  const uniName = universityNames[enrollmentFormat as keyof typeof universityNames];
-  if (!enrollmentFormat || !uniName) throw new Error("Invalid university");
+  const zip = new jszip();
+  const uniName = universityNames.get(enrollmentFormat);
+  if (!uniName) throw new Error("Invalid university");
   const title = fontSize.get(enrollmentFormat);
   for await (const course of courses) {
     const pdfDoc = await PDFDocument.load(templatePdfBytes);
@@ -211,17 +198,17 @@ const POST = async (req: NextRequest, res: NextResponse) => {
       size: title,
     });
     const coursePdfBytes = await pdfDoc.save();
-    zip.addFile(
+    zip.file(
       `${course}-CONFIDENTIALITY-UNDERTAKING.pdf`,
       Buffer.from(coursePdfBytes),
     );
   }
-  zip.addFile("README.md", contributorsBuffer);
-  console.log("PDFs generated successfully");
-  return new NextResponse(zip.toBuffer(), {
-    status: 200,
-    headers,
-  });
+  zip.file("README.md", contributorsBuffer);
+  return new NextResponse(
+    await zip.generateAsync({ type: "blob" }),
+    {
+      status: 200,
+      headers,
+    },
+  );
 };
-
-export { POST };
