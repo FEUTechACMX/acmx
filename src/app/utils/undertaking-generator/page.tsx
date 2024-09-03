@@ -16,8 +16,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { MAX_UNDERTAKING_IMG_SIZE } from "~/utils/zodUndertaking";
 import { env } from "~/env";
 import { zodUndertaking } from "~/utils/zodUndertaking";
-
+import Spinner from "~/components/Spinner";
 export default function Component() {
+    const [loading, setLoading] = useState(false);
     const [fullName, setFullName] = useState('');
     const [studentNumber, setStudentNumber] = useState('');
     const [year, setYear] = useState('');
@@ -93,6 +94,7 @@ export default function Component() {
         formData.set("idImg", body.idImg);
         formData.set("signatureImg", body.signatureImg);
 
+        setLoading(true);
         const res = await fetch(
             `${env.NEXT_PUBLIC_HOST_URL}/api/utils/undertaking-generator`,
             {
@@ -103,6 +105,7 @@ export default function Component() {
 
         if (!res.ok) {
             alert(await res.text());
+            setLoading(false);
             return;
         }
 
@@ -119,6 +122,8 @@ export default function Component() {
         document.body.removeChild(link);
         window.URL.revokeObjectURL(url);
         console.log("Downloaded");
+
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -127,6 +132,7 @@ export default function Component() {
 
     return (
         <div className="container w-screen h-screen sm:flex items-center justify-center flex-col mx-auto px-4 py-8 max-w-4xl">
+            {loading && <Spinner />}
             <div className="flex flex-col items-center mb-4">
                 <Image
                     src="/acm/FIT_ACM.png"
@@ -160,11 +166,11 @@ export default function Component() {
                             >
                                 <div>
                                     <Label htmlFor="name">Name</Label>
-                                    <Input id="name" value={fullName} onChange={(e) => setFullName(e.target.value)} />
+                                    <Input id="name" placeholder="Victor Magtanggol" value={fullName} onChange={(e) => setFullName(e.target.value)} />
                                 </div>
                                 <div>
                                     <Label htmlFor="studentNumber">Student Number</Label>
-                                    <Input id="studentNumber" value={studentNumber} onChange={(e) => setStudentNumber(e.target.value)} />
+                                    <Input id="studentNumber" placeholder="20yyxxxxx" value={studentNumber} onChange={(e) => setStudentNumber(e.target.value)} />
                                 </div>
                                 <div>
                                     <Label htmlFor="year">Year</Label>
@@ -306,21 +312,15 @@ export default function Component() {
                 <div className="block sm:flex justify-center items-center space-x-2">
                     <div className="space-x-2">
                         <GithubIcon className="h-4 w-4 inline" />
-                    <a href="https://github.com/your-organization" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+                        <a href="https://github.com/FEUTechACMX/acmx" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
                         GitHub Repository
                     </a>
                     </div>
                     <div className="space-x-2">
                         <RocketIcon className="h-4 w-4 inline" />
-                    <a href="https://github.com/your-organization" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
+                        <a href={`${env.NEXT_PUBLIC_HOST_URL}/data/json/contributors.json`} target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
                             Project ACM-X Team
                     </a>
-                    </div>
-                    <div className="space-x-2">
-                        <CodeXmlIcon className="h-4 w-4 inline" />
-                        <a href="https://github.com/your-organization" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
-                            Join the Team
-                        </a>
                     </div>
                 </div>
             </footer>
