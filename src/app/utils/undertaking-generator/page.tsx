@@ -130,17 +130,17 @@ export default function Component() {
     }, [searchTerm]);
 
     return (
-        <div className="container w-screen h-screen sm:flex items-center justify-center flex-col mx-auto px-4 py-8 max-w-4xl">
+        <div className="container h-screen sm:flex items-center justify-center flex-col mx-auto px-4 py-8 max-w-4xl">
             {loading && <Spinner />}
             <div className="flex flex-col items-center mb-4">
                 <Image
                     src="/acm/FIT_ACM.png"
                     alt="FEU Tech ACM Logo"
-                    height={100}
-                    width={100}
+                    height={80}
+                    width={80}
                 />
                 <motion.h1
-                    className="text-4xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text"
+                    className="text-3xl font-bold text-center bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -169,7 +169,7 @@ export default function Component() {
                                 </div>
                                 <div>
                                     <Label htmlFor="studentNumber">Student Number</Label>
-                                    <Input id="studentNumber" placeholder="20yyxxxxx" value={studentNumber} onChange={(e) => setStudentNumber(e.target.value)} />
+                                    <Input id="studentNumber" inputMode="numeric" placeholder="20yyxxxxx" value={studentNumber} onChange={(e) => setStudentNumber(e.target.value)} />
                                 </div>
                                 <div>
                                     <Label htmlFor="year">Year</Label>
@@ -212,11 +212,11 @@ export default function Component() {
                                 </div>
                                 <div>
                                     <Label htmlFor="signature">Signature Upload</Label>
-                                    <Input id="signature" type="file" accept="image/png, image/gif, image/jpeg" onChange={handleSignatureUpload} />
+                                    <Input id="signature" type="file" accept="image/png, image/jpeg" onChange={handleSignatureUpload} />
                                 </div>
                                 <div>
                                     <Label htmlFor="id">ID Upload</Label>
-                                    <Input id="id" type="file" accept="image/png, image/gif, image/jpeg" onChange={handleIdUpload} />
+                                    <Input id="id" type="file" accept="image/png, image/jpeg" onChange={handleIdUpload} />
                                 </div>
                             </motion.div>
                         </TabsContent>
