@@ -5,6 +5,12 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  resolve: {
+    fallback: {
+      fs: false,
+    },
+  },
+};
 
 export default config;
