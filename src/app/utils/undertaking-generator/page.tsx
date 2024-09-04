@@ -178,10 +178,10 @@ export default function Component() {
                                             <SelectValue placeholder="Select year" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="1">1st Year</SelectItem>
-                                            <SelectItem value="2">2nd Year</SelectItem>
-                                            <SelectItem value="3">3rd Year</SelectItem>
-                                            <SelectItem value="4">4th Year</SelectItem>
+                                            <SelectItem value="1st">1st Year</SelectItem>
+                                            <SelectItem value="2nd">2nd Year</SelectItem>
+                                            <SelectItem value="3rd">3rd Year</SelectItem>
+                                            <SelectItem value="4th  ">4th Year</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
