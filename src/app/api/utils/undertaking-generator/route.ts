@@ -113,7 +113,7 @@ const createTemplate = async (
 
   firstPage.drawText(studentNumber, {
     x: 400,
-    y: 108,
+    y: 110,
     size: reg,
   });
 
