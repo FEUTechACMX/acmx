@@ -3,13 +3,12 @@ import { readFile } from "fs/promises";
 import jszip from "jszip";
 import { NextResponse } from "next/server";
 import { PDFDocument } from "pdf-lib";
-import contributors from "public/data/json/contributors.json";
 import undertakingEmbedImage from "~/utils/image";
 import serverWrapper from "~/utils/serverWrapper";
 import undertakingImgType from "~/utils/validImage";
-import { UndertakingBody, zodUndertaking } from "~/utils/zodUndertaking";
-import { MAX_UNDERTAKING_IMG_SIZE } from "~/utils/zodUndertaking";
-const contributorsBuffer = Buffer.from(JSON.stringify(contributors));
+import { MAX_UNDERTAKING_IMG_SIZE, UndertakingBody, zodUndertaking } from "~/utils/zodUndertaking";
+import undertakingCredits from "./contributors";
+const contributorsBuffer = Buffer.from(undertakingCredits);
 
 interface ImgTypes {
   idImgType: number;
@@ -200,7 +199,7 @@ export const POST = serverWrapper(async (req) => {
       Buffer.from(coursePdfBytes),
     );
   }
-  zip.file("README.md", contributorsBuffer);
+  zip.file("CONTRIBUTORS.md", contributorsBuffer);
   return new NextResponse(
     await zip.generateAsync({ type: "blob" }),
     {

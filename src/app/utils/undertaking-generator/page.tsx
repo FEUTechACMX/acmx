@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { CodeXmlIcon, GithubIcon, RocketIcon } from 'lucide-react';
+import { GithubIcon, RocketIcon } from 'lucide-react';
 import Image from "next/image";
 import courseJSON from "public/data/json/courses.json";
 import { useEffect, useState } from 'react';
+import Spinner from "~/components/Spinner";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
 import { Checkbox } from "~/components/ui/checkbox";
@@ -13,10 +14,8 @@ import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { MAX_UNDERTAKING_IMG_SIZE } from "~/utils/zodUndertaking";
 import { env } from "~/env";
-import { zodUndertaking } from "~/utils/zodUndertaking";
-import Spinner from "~/components/Spinner";
+import { MAX_UNDERTAKING_IMG_SIZE, zodUndertaking } from "~/utils/zodUndertaking";
 export default function Component() {
     const [loading, setLoading] = useState(false);
     const [fullName, setFullName] = useState('');
