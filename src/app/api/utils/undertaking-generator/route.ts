@@ -67,6 +67,21 @@ function setDimWithAspectRatio(width: number, height: number, maxDims: dim) {
   };
 }
 
+function getYearString(year: string) {
+  switch (year) {
+    case "1":
+      return "1st Year";
+    case "2":
+      return "2nd Year";
+    case "3":
+      return "3rd Year";
+    case "4":
+      return "4th Year";
+    default:
+      return year;
+  }
+}
+
 const source = process.cwd() + "/public/data/CONFIDENTIALITY-UNDERTAKING.pdf";
 const createTemplate = async (
   signatureBytes: Buffer,
@@ -75,6 +90,7 @@ const createTemplate = async (
   rest: UndertakingBodyPartial,
 ) => {
   const { fullName, year, program, studentNumber } = rest;
+  const yearString = getYearString(year);
   const templatePdf = await PDFDocument.load(await readFile(source));
   const { idImgType, signatureImgType } = imgTypes;
   const idImgPromise = undertakingEmbedImage(idBytes, idImgType, templatePdf);
@@ -106,7 +122,7 @@ const createTemplate = async (
     size: reg,
   });
 
-  firstPage.drawText(`${year} / ${program}`, {
+  firstPage.drawText(`${yearString} / ${program}`, {
     x: 400,
     y: 122,
     size: reg,
@@ -114,7 +130,7 @@ const createTemplate = async (
 
   firstPage.drawText(studentNumber, {
     x: 400,
-    y: 108,
+    y: 110,
     size: reg,
   });
 
