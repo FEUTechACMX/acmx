@@ -11,6 +11,9 @@ const config = {
       fs: false,
     },
   },
+  experimental: {
+    optimizePackageImports: ["react-icons", "next-auth", "prisma"],
+  },
 };
 
 export default config;
