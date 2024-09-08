@@ -1,8 +1,52 @@
 "use client";
-import { useState } from 'react';
+import { signIn } from "next-auth/react";
+import React, { useState } from 'react';
+import { FaGoogle, FaMicrosoft } from "react-icons/fa";
+import ACMLogo from '~/components/ACMLogo';
 import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '~/components/ui/card';
-import ACMLogo from '~/components/ACMLogo';
+
+type Provider = {
+    name: string;
+    id: string;
+    logo: JSX.Element;
+};
+
+const providers = {
+    google: {
+        name: 'Google',
+        id: 'google',
+        logo: <FaGoogle className="mr-2 h-4 w-4" />,
+    },
+    microsoft: {
+        name: 'Microsoft',
+        id: 'azure-ad',
+        logo: <FaMicrosoft className="mr-2 h-4 w-4" />,
+    },
+};
+const ProviderButton: React.FC<Provider> = (provider) => {
+    return (
+        <Button
+            variant="outline"
+            onClick={() => signIn(provider.id)}
+            className="bg-white hover:bg-gray-50 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded shadow-sm transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
+        >
+            {provider.logo}
+            Sign in with {provider.name}
+        </Button>
+    );
+};
+
+const ProviderButtons: React.FC = () => {
+    return (
+        <CardContent className="grid gap-4">
+            {Object.values(providers).map(provider => (
+                <ProviderButton key={provider.id} {...provider} />
+            ))}
+        </CardContent>
+    );
+}
+
 export default function SignIn() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -27,34 +71,7 @@ export default function SignIn() {
                         Sign in to access your account
                     </p>
                 </CardHeader>
-                <CardContent className="grid gap-4">
-                    <Button
-                        variant="outline"
-                        onClick={() => onSubmit('google')}
-                        disabled={isLoading}
-                        className="bg-white hover:bg-gray-50 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded shadow-sm transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
-                    >
-                        {/* {isLoading ? (
-                            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                            <Icons.google className="mr-2 h-4 w-4" />
-                        )} */}
-                        Sign in with Google
-                    </Button>
-                    <Button
-                        variant="outline"
-                        onClick={() => onSubmit('microsoft')}
-                        disabled={isLoading}
-                        className="bg-white hover:bg-gray-50 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded shadow-sm transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
-                    >
-                        {/* {isLoading ? (
-                            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                        ) : (
-                            <Icons.microsoft className="mr-2 h-4 w-4" />
-                        )} */}
-                        Sign in with Microsoft
-                    </Button>
-                </CardContent>
+                <ProviderButtons />
                 <CardFooter>
                     <p className="text-xs text-center text-gray-600 mt-4 w-full">
                         By signing in, you agree to our Terms of Service and Privacy Policy
