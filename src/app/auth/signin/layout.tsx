@@ -1,4 +1,4 @@
-import "~/styles/2023.css";
+import "~/styles/2024.css";
 
 import { type Metadata } from "next";
 

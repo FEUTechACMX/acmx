@@ -1,6 +1,5 @@
 "use client";
 import { signIn } from "next-auth/react";
-import React, { useState } from 'react';
 import { FaGoogle, FaMicrosoft } from "react-icons/fa";
 import ACMLogo from '~/components/ACMLogo';
 import { Button } from '~/components/ui/button';
@@ -29,7 +28,6 @@ const ProviderButton: React.FC<Provider> = (provider) => {
         <Button
             variant="outline"
             onClick={() => signIn(provider.id)}
-            className="bg-white hover:bg-gray-50 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded shadow-sm transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
         >
             {provider.logo}
             Sign in with {provider.name}
@@ -48,20 +46,10 @@ const ProviderButtons: React.FC = () => {
 }
 
 export default function SignIn() {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    async function onSubmit(provider: 'google' | 'microsoft') {
-        setIsLoading(true);
-
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 3000);
-    }
-
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-            <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
-            <Card className="w-full max-w-md bg-white/80 backdrop-blur-sm shadow-xl border-0">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br p-4">
+            <div className="absolute inset-0 bg-background -z-10"></div>
+            <Card className="w-full max-w-md backdrop-blur-sm shadow-xl border-0">
                 <CardHeader className="space-y-1 flex flex-col items-center">
                     <div className="w-20 h-12 rounded-full flex items-center justify-center relative">
                         <ACMLogo />
