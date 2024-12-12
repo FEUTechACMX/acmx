@@ -1,6 +1,7 @@
 import { GeistSans } from "geist/font/sans";
-import { Analytics } from "@vercel/analytics/react";
 import { type Metadata } from "next";
+import "src/styles/2023.css";
+import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -13,9 +14,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <Analytics />
       <body>
-        {children}
+        <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
   );
