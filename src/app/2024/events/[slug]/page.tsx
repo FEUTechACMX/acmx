@@ -83,8 +83,8 @@ const Event = async ({
                                         </CarouselItem>
                                     ))}
                                 </CarouselContent>
-                                <CarouselPrevious className="left-3" />
-                                <CarouselNext className="right-3" />
+                                <CarouselPrevious className="left-1 lg:left-3" />
+                                <CarouselNext className="right-1 lg:right-3" />
                             </Carousel>
                         </section>
                         <section className="mt-5">
@@ -100,8 +100,8 @@ const Event = async ({
                                         </CarouselItem>
                                     ))}
                                 </CarouselContent>
-                                <CarouselPrevious className="left-3" />
-                                <CarouselNext className="right-3" />
+                                <CarouselPrevious className="left-1 lg:left-3" />
+                                <CarouselNext className="right-1 lg:right-3" />
                             </Carousel>
                         </section>
                     </section>
