@@ -101,7 +101,7 @@ const Event = async ({
                             </Carousel>
                         </section>
                     </section>
-                    <section className="max-w-[22rem] hidden lg:flex flex-col gap-[0.1rem] sticky top-8 self-start">
+                    <section className="w-[22rem] hidden lg:flex flex-col gap-[0.1rem] sticky top-8 self-start">
                         <VenueInformation event={event} />
                         <Register event={event} />
                     </section>
