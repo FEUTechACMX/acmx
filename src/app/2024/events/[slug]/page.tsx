@@ -31,13 +31,13 @@ const Event = async ({
     params: Promise<{ slug: string }>
 }) => {
     const eventSlug = (await params).slug;
-    const event = await api.post.getEvent({ slug: eventSlug });
+    const event = await api.event.getEvent({ slug: eventSlug });
     
     // TODO: add loader
     if (!event)
         return <></>;
 
-    const tags = await api.post.getTags({ id: event.id });
+    const tags = await api.event.getTags({ id: event.id });
 
     return (
         <div className="relative mb-[8rem]"> 
@@ -147,7 +147,7 @@ const Register = ({ mobileView, event }: { mobileView?: boolean, event: Event })
 }
 
 const VenueInformation = async ({ mobileView, event }: { mobileView?: boolean, event: Event }) => {
-    const organization = await api.post.getOrganization({ id: event.hostedById });
+    const organization = await api.event.getOrganization({ id: event.hostedById });
     const date = event.hostedOn.toLocaleString('en-US', {
         year: 'numeric',
         month: 'long',
