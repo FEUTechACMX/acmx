@@ -1,0 +1,1 @@
+// Side bar for the forum page component
