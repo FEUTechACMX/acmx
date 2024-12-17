@@ -1,1 +1,0 @@
-// tabs component that shows the tabs for the forum page

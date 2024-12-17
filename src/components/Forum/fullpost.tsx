@@ -1,1 +1,0 @@
-// full post component that shows the full post when post is clicked
