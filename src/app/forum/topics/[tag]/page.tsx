@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
-import { QuestionList } from "@/components/question-list"
-import { prisma } from "@/lib/db"
+import { Badge } from "~/components/ui/badge"
+import { Button } from "~/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
+import { Skeleton } from "~/components/ui/skeleton"
+import { QuestionList } from "~/components/Forum/question-list"
+import { prisma } from "~/lib/forum/db"
 
 interface TopicPageProps {
   params: {

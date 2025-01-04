@@ -1,17 +1,19 @@
 'use server'
 
 import { revalidatePath } from "next/cache"
-import { auth } from "@/lib/auth"
+import { authOptions, getServerAuthSession } from "~/server/auth" // Import authOptions for authentication
 import { z } from "zod"
 
+// Define schema for validation
 const questionSchema = z.object({
   title: z.string().min(15).max(150),
   content: z.string().min(30),
   tags: z.array(z.string()).min(1).max(5),
 })
 
+// Create a question
 export async function createQuestion(formData: FormData) {
-  const session = await auth()
+  const session = await getServerAuthSession() // Use the custom auth function
   if (!session?.user) {
     throw new Error("You must be logged in to create a question")
   }
@@ -43,9 +45,10 @@ export async function createQuestion(formData: FormData) {
   return question
 }
 
+// Get questions
 export async function getQuestions(page = 1, limit = 10) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/questions?page=${page}&limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_HOST_URL}/api/questions?page=${page}&limit=${limit}`,
     { next: { revalidate: 60 } } // Cache for 60 seconds
   )
 
@@ -56,6 +59,7 @@ export async function getQuestions(page = 1, limit = 10) {
   return response.json()
 }
 
+// Get a specific question
 export async function getQuestion(id: string) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/questions/${id}`, {
     next: { revalidate: 60 } // Cache for 60 seconds
@@ -68,8 +72,9 @@ export async function getQuestion(id: string) {
   return response.json()
 }
 
+// Create a reply to a question
 export async function createReply(questionId: string, formData: FormData) {
-  const session = await auth()
+  const session = await getServerAuthSession() // Use the custom auth function
   if (!session?.user) {
     throw new Error("You must be logged in to reply")
   }
@@ -96,5 +101,3 @@ export async function createReply(questionId: string, formData: FormData) {
   revalidatePath(`/questions/${questionId}`)
   return reply
 }
-
-

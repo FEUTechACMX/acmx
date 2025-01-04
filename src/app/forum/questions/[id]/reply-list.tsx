@@ -1,8 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
+import { Button } from "~/components/ui/button"
+import { Card, CardContent, CardHeader } from "~/components/ui/card"
 import { ThumbsUp, ThumbsDown } from 'lucide-react'
-import { prisma } from "@/lib/db"
+import { prisma } from "~/lib/forum/db"
 
 // ReplyList component to display all replies for a question
 export async function ReplyList({ questionId }: { questionId: string }) {
@@ -23,10 +23,10 @@ export async function ReplyList({ questionId }: { questionId: string }) {
           <CardHeader className="flex flex-row items-center gap-4">
             <Avatar>
               <AvatarImage src={reply.author.image || ''} />
-              <AvatarFallback>{reply.author.name[0]}</AvatarFallback>
+              <AvatarFallback>{reply.author.name?.[0] ?? 'A'}</AvatarFallback>
             </Avatar>
             <div className="flex-1">
-              <p className="font-semibold">{reply.author.name}</p>
+              <p className="font-semibold">{reply.author?.name || 'Anonymous'}</p>
               <p className="text-sm text-muted-foreground">
                 {new Date(reply.createdAt).toLocaleDateString()}
               </p>
@@ -51,5 +51,4 @@ export async function ReplyList({ questionId }: { questionId: string }) {
     </div>
   )
 }
-
 

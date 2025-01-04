@@ -2,9 +2,9 @@
 
 import { useTransition } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { createReply } from "@/app/actions/questions"
+import { Button } from "~/components/ui/button"
+import { Textarea } from "~/components/ui/textarea"
+import { createReply } from "../../actions/questions"
 import { toast } from "sonner"
 
 export function ReplyForm({ questionId }: { questionId: string }) {

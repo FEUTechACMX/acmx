@@ -1,10 +1,10 @@
 import { Suspense } from "react"
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Skeleton } from "@/components/ui/skeleton"
-import { prisma } from "@/lib/db"
+import { Badge } from "~/components/ui/badge"
+import { Input } from "~/components/ui/input"
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card"
+import { Skeleton } from "~/components/ui/skeleton"
+import { prisma } from "~/lib/forum/db"
 
 export default function TopicsPage() {
   return (

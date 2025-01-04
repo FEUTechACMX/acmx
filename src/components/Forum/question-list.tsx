@@ -2,22 +2,22 @@
 
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
+import { Badge } from "~/components/ui/badge"
+import { Button } from "~/components/ui/button"
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card"
+} from "~/components/ui/card"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "~/components/ui/dropdown-menu"
 import { MoreVertical, MessageSquare, ThumbsUp } from 'lucide-react'
 import type { Question, User, Tag } from "@prisma/client"
 
@@ -62,14 +62,14 @@ export function QuestionItem({ question }: QuestionItemProps) {
       <CardHeader className="flex flex-row items-center gap-4">
         <Avatar>
           <AvatarImage src={question.author.image || ''} />
-          <AvatarFallback>{question.author.name[0]}</AvatarFallback>
+          <AvatarFallback>{question.author.name?.[0] ?? 'A'}</AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <h3 className="font-semibold hover:underline">
             {question.title}
           </h3>
           <p className="text-sm text-muted-foreground">
-            Posted by {question.author.name}
+            Posted by {question.author?.name || 'Anonymous'}
           </p>
         </div>
         <DropdownMenu>
@@ -128,5 +128,4 @@ export function QuestionList({ questions }: { questions: QuestionWithAuthorAndTa
     </div>
   )
 }
-
 

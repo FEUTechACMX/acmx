@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
-import { prisma } from "@/lib/db"
-import { auth } from "@/lib/auth"
+import { prisma } from '~/lib/forum/db'
+import { getServerAuthSession } from '~/server/auth'
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
@@ -33,7 +33,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const session = await auth()
+  const session = await getServerAuthSession() // Use the correct auth function to get the session
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
@@ -61,5 +61,3 @@ export async function POST(request: Request) {
 
   return NextResponse.json(question)
 }
-
-

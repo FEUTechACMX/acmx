@@ -2,14 +2,14 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
 import { Search, Menu } from 'lucide-react'
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "../ui/sheet"
 import { SideNav } from "./side-nav"
 
 export function MainNav() {

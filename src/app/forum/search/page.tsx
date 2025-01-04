@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
-import { QuestionList } from "@/components/question-list"
-import { prisma } from "@/lib/db"
-import { Skeleton } from "@/components/ui/skeleton"
+import { QuestionList } from '~/components/Forum/question-list'
+import { prisma } from '~/lib/forum/db'
+import { Skeleton } from "~/components/ui/skeleton"
 
 interface SearchPageProps {
   searchParams: { q?: string }
