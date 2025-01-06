@@ -1,107 +1,126 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Layout } from "~/components/Forum/layout"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Textarea } from "~/components/ui/textarea"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card"
-import { createQuestion } from '../../actions/questions'
-import { TagInput } from '~/components/Forum/tag-input'
 
-export default function AskQuestionPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+export default function AskQuestion() {
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
   const [tags, setTags] = useState<string[]>([])
+  const [tagInput, setTagInput] = useState("")
   const router = useRouter()
 
-  async function handleSubmit(formData: FormData) {
-    setIsSubmitting(true)
+  const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && tagInput.trim()) {
+      e.preventDefault()
+      setTags([...tags, tagInput.trim()])
+      setTagInput("")
+    }
+  }
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setTags(tags.filter(tag => tag !== tagToRemove))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
     try {
-      // Add tags to form data
-      tags.forEach(tag => formData.append('tags', tag))
-      
-      const question = await createQuestion(formData)
-      router.push(`/questions/${question.id}`)
+      const response = await fetch('/api/questions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title,
+          content,
+          tags,
+          authorId: "user-id", // Replace with actual user ID from authentication
+        }),
+      })
+
+      if (response.ok) {
+        router.push('/')
+      } else {
+        // Handle error
+        console.error('Failed to create question')
+      }
     } catch (error) {
-      console.error('Failed to create question:', error)
-      setIsSubmitting(false)
+      console.error('Error:', error)
     }
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <Card>
-        <CardHeader>
-          <CardTitle>Ask a Question</CardTitle>
-          <CardDescription>
-            Be specific and imagine you're asking a question to another person.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form action={handleSubmit} className="space-y-6">
+    <Layout>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-2xl font-bold">Ask a Question</h1>
+          <p className="text-sm text-muted-foreground">
+            Get help from the community by asking a clear and detailed question
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <label htmlFor="title" className="text-sm font-medium">
+              Title
+            </label>
+            <Input
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="What's your question?"
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="content" className="text-sm font-medium">
+              Content
+            </label>
+            <Textarea
+              id="content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Provide more details about your question..."
+              className="min-h-[200px]"
+            />
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="tags" className="text-sm font-medium">
+              Tags
+            </label>
             <div className="space-y-2">
-              <label htmlFor="title" className="text-sm font-medium">
-                Title
-              </label>
               <Input
-                id="title"
-                name="title"
-                required
-                minLength={15}
-                maxLength={150}
-                placeholder="e.g. How do I create a responsive layout in Tailwind CSS?"
+                id="tags"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={handleAddTag}
+                placeholder="Add tags (press Enter to add)"
               />
-              <p className="text-xs text-muted-foreground">
-                Be specific and imagine you're asking a question to another person
-              </p>
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 rounded-full text-xs bg-secondary text-secondary-foreground flex items-center"
+                  >
+                    #{tag}
+                    <button
+                      type="button"
+                      className="ml-2 hover:text-destructive"
+                      onClick={() => handleRemoveTag(tag)}
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
             </div>
-
-            <div className="space-y-2">
-              <label htmlFor="content" className="text-sm font-medium">
-                Body
-              </label>
-              <Textarea
-                id="content"
-                name="content"
-                required
-                minLength={30}
-                rows={12}
-                placeholder="Include all the information someone would need to answer your question"
-              />
-              <p className="text-xs text-muted-foreground">
-                Include all the information someone would need to answer your question
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="tags" className="text-sm font-medium">
-                Tags
-              </label>
-              <TagInput
-                value={tags}
-                onChange={setTags}
-                placeholder="Add up to 5 tags..."
-                maxTags={5}
-              />
-              <p className="text-xs text-muted-foreground">
-                Add up to 5 tags to describe what your question is about
-              </p>
-            </div>
-
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Posting..." : "Post Your Question"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+          </div>
+          <div className="flex justify-end space-x-4">
+            <Button type="submit">Submit Question</Button>
+          </div>
+        </form>
+      </div>
+    </Layout>
   )
 }
-
 

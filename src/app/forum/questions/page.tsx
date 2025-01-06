@@ -6,9 +6,10 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from "~/components/ui/select"
 import Link from "next/link"
+
 
 const questions = [
   {
