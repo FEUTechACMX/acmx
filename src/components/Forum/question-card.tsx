@@ -36,7 +36,7 @@ export function QuestionCard({
             <AvatarFallback>{author.name[0]}</AvatarFallback>
           </Avatar>
           <div>
-            <Link href={`/questions/${id}`} className="font-semibold hover:underline">
+            <Link href={`/forum/questions/${id}`} className="font-semibold hover:underline">
               {title}
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -65,7 +65,7 @@ export function QuestionCard({
           {tags.map((tag) => (
             <Link
               key={tag}
-              href={`/tags/${tag}`}
+              href={`/forum/tags/${tag}`}
               className="px-2 py-1 rounded-full text-xs bg-secondary text-secondary-foreground"
             >
               #{tag}

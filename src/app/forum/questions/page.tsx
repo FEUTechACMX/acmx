@@ -63,7 +63,7 @@ export default function QuestionsPage() {
               </SelectContent>
             </Select>
             <Button asChild>
-              <Link href="/questions/ask">Ask Question</Link>
+              <Link href="/forum/questions/ask">Ask Question</Link>
             </Button>
           </div>
         </div>

@@ -28,7 +28,7 @@ export default function TagsPage() {
           {tags.map((tag) => (
             <Link
               key={tag.name}
-              href={`/tags/${tag.name}`}
+              href={`/forum/tags/${tag.name}`}
               className="group rounded-lg border p-4 hover:border-primary"
             >
               <div className="flex items-center gap-2">

@@ -41,7 +41,7 @@ export default function AskQuestion() {
       })
 
       if (response.ok) {
-        router.push('/')
+        router.push('/forum')
       } else {
         // Handle error
         console.error('Failed to create question')

@@ -1,24 +1,29 @@
 "use client"
 
-import { Button } from '../ui/button'
-import { Input } from "../ui/input"
-import { Menu, Search } from 'lucide-react'
+import { Button } from "~/components/ui/button"
+import { Input } from "~/components/ui/input"
+import { Menu, Search, X } from 'lucide-react'
 import Link from "next/link"
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet"
-import { cn } from '~/lib/utils'
+import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet"
 import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { MobileNav } from "./mobile-nav"
+import { cn } from "~/lib/utils"
 
 export function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
-  const router = useRouter()
+  const [searchResults, setSearchResults] = useState<any[]>([])
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery)}`)
-    }
+    if (!searchQuery.trim()) return
+
+    // In a real app, this would be an API call
+    const results = await fetch(`/api/forum/search?q=${encodeURIComponent(searchQuery)}`)
+      .then(res => res.json())
+      .catch(() => [])
+
+    setSearchResults(results)
   }
 
   return (
@@ -26,88 +31,79 @@ export function Header() {
       <div className="container flex h-14 items-center">
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button variant="ghost" size="icon" className="lg:hidden">
               <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-[80%] max-w-sm pt-14">
+          <SheetContent side="left" className="w-[80%] max-w-sm p-0">
             <MobileNav />
           </SheetContent>
         </Sheet>
-        <Link href="/" className="mr-6 flex items-center space-x-2">
+
+        <Link href="/forum" className="mr-6 flex items-center space-x-2">
           <span className="hidden font-bold sm:inline-block">ACMX FORUM</span>
         </Link>
-        <div className="flex flex-1 items-center justify-center px-2">
+
+        <div className="flex-1 flex items-center justify-end lg:justify-center px-2">
           <form
             onSubmit={handleSearch}
             className={cn(
-              "flex w-full max-w-2xl items-center",
-              isSearchOpen ? "block" : "hidden md:flex"
+              "relative w-full max-w-2xl",
+              isSearchOpen ? "flex" : "hidden lg:flex"
             )}
           >
-            <div className="relative flex flex-1">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search questions..."
-                className="w-full pl-8"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <Button type="submit" className="ml-2">
-              Search
-            </Button>
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search questions..."
+              className="w-full pl-8 pr-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            {isSearchOpen && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="absolute right-0 top-0 h-full"
+                onClick={() => setIsSearchOpen(false)}
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
+            {searchQuery && searchResults.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-2 p-2 bg-background border rounded-md shadow-lg">
+                {searchResults.map((result) => (
+                  <Link
+                    key={result.id}
+                    href={`/forum/questions/${result.id}`}
+                    className="block p-2 hover:bg-accent rounded-md"
+                  >
+                    {result.title}
+                  </Link>
+                ))}
+              </div>
+            )}
           </form>
         </div>
-        <div className="flex items-center justify-end space-x-2">
+
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
             <Search className="h-5 w-5" />
             <span className="sr-only">Toggle search</span>
           </Button>
-          <Button variant="default" asChild>
+          <Button asChild>
             <Link href="/forum/questions/ask">Create Post</Link>
           </Button>
         </div>
       </div>
     </header>
-  )
-}
-
-function MobileNav() {
-  return (
-    <div className="flex flex-col space-y-3">
-      <Link
-        href="/"
-        className="text-sm font-medium hover:underline"
-      >
-        Home
-      </Link>
-      <Link
-        href="/questions"
-        className="text-sm font-medium hover:underline"
-      >
-        Questions
-      </Link>
-      <Link
-        href="/tags"
-        className="text-sm font-medium hover:underline"
-      >
-        Tags
-      </Link>
-      <Link
-        href="/settings"
-        className="text-sm font-medium hover:underline"
-      >
-        Settings
-      </Link>
-    </div>
   )
 }
 

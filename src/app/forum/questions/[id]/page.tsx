@@ -57,19 +57,19 @@ func main() {
             </div>
             <div className="flex gap-2">
               <Link
-                href="/tags/programming"
+                href="/forum/tags/programming"
                 className="px-2 py-1 rounded-full text-xs bg-secondary text-secondary-foreground"
               >
                 #programming
               </Link>
               <Link
-                href="/tags/freebsd"
+                href="/forum/tags/freebsd"
                 className="px-2 py-1 rounded-full text-xs bg-secondary text-secondary-foreground"
               >
                 #freebsd
               </Link>
               <Link
-                href="/tags/kde"
+                href="/forum/tags/kde"
                 className="px-2 py-1 rounded-full text-xs bg-secondary text-secondary-foreground"
               >
                 #kde
