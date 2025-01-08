@@ -90,7 +90,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
             prevStar.y +
             prevStar.speed * Math.sin((prevStar.angle * Math.PI) / 180);
           const newDistance = prevStar.distance + prevStar.speed;
-          const newScale = 1 + newDistance / 100;
+          const newScale = 2 + newDistance / 100;
           if (
             newX < -20 ||
             newX > window.innerWidth + 20 ||

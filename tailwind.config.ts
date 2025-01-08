@@ -18,7 +18,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily : {
+        header : 'var(--font-BostonAngel)',
+      },
       colors: {
+        customWhite : '#FEFAF6',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
