@@ -4,7 +4,7 @@ import { TRPCReactProvider } from "~/trpc/react";
 import localFont from "next/font/local";
 import { Habibi } from "next/font/google";
 import { Abhaya_Libre } from "next/font/google";
-import Navbar from "./(components)/navbar";
+import Navbar from "./(components)/NavBar";
 
 const bostonAngel = localFont({
   src: "../../../public/fonts/Boston-Angel.ttf",
