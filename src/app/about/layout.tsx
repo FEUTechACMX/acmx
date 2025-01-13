@@ -22,6 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bostonAngel.variable}`}>
       <body>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Boston+Angel&display=swap"
+          rel="stylesheet"
+        />
         <Navbar />
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
