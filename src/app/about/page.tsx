@@ -1,3 +1,4 @@
+import AboutTeam from "~/components/2024/about/AboutTeam";
 import PlayButton from "~/components/ui/play-button";
 import { ShootingStars } from "~/components/ui/shooting-stars";
 import { StarsBackground } from "~/components/ui/stars-background";
@@ -9,8 +10,11 @@ export default function Home() {
         <ShootingStars />
       </div>
       <div className="z-20 text-center">
-      <h1 className="font-header text-[3rem] lg:text-[7.2rem]">Enter the world of ACMX</h1>
+        <h1 className="font-header text-[3rem] lg:text-[7.2rem]">
+          Enter the world of ACMX
+        </h1>
         <PlayButton />
+        <AboutTeam />
       </div>
     </div>
   );
