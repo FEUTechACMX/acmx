@@ -1,9 +1,9 @@
 "use client";
 import { CirclePause, CirclePlay } from "lucide-react";
-import {  useRef, useState } from "react";
-import { Button } from "./button";
+import {  forwardRef, useRef, useState } from "react";
 
-export default function PlayButton() {
+/*Optional Props */
+const PlayButton = forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>((props, ref)=> {
   const [isClick, setIsClick] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -22,9 +22,10 @@ export default function PlayButton() {
   return (
     <>
     <audio ref={audioRef} src="/BackgroundMusic.mp3" loop />
-    <Button onClick={handleClick}>
-      {isClick ? <CirclePause /> : <CirclePlay />}
-    </Button>
+    <button onClick={handleClick} ref={ref} {...props}>
+      {isClick ? <CirclePause size={70} strokeWidth={1}  /> : <CirclePlay size={70} strokeWidth={1}/>}
+    </button>
     </>
   );
-}
+});
+export default PlayButton;
