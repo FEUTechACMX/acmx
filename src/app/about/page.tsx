@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
+
 export default function Home() {
   const titleRef = useRef(null);
   const playButtonRef = useRef(null);
@@ -28,13 +29,13 @@ export default function Home() {
     if (playButtonRef.current) {
       gsap.fromTo(playButtonRef.current, {
         opacity: 0,  
-        y: 200,      
-        duration: 3, 
+        y: 50,      
+        duration: 2, 
         ease: "power2.out", 
       },{
         opacity: 1,
         y: 0,
-        duration : 3,
+        duration : 2,
         ease: "power2.out", 
       });
     }
@@ -47,7 +48,6 @@ export default function Home() {
           trigger : header1Ref.current,
           start: "top center",
           end : "bottom top",
-          markers : true,
           scrub : true
         },
         x: 300,      
@@ -66,10 +66,10 @@ export default function Home() {
           x: 0,    // End at center (original position)
           scrollTrigger: {
             trigger: header2Ref.current,
-            start: "top center",
-            end: "bottom top",
-            markers: true,
+            start: "top bottom",
+            end: "bottom center",
             scrub: true,
+            markers: true
           },
           ease: "none",
         }
@@ -83,19 +83,23 @@ export default function Home() {
         <StarsBackground />
         <ShootingStars />
       </div>
-      <section className="h-[100vh] z-20 flex flex-col justify-center items-center leading-9">
-        <h1 className="font-header lg:text-9xl" ref={titleRef}>Hello, World</h1>
-        <h3 className="italic lg:text-xl">Play for the best experience</h3>
-        <PlayButton className="mt-8" ref ={playButtonRef}/>
+      <section className="h-screen z-20 flex flex-col justify-center items-center leading-tight sm:leading-normal px-4 text-center">
+        <h1 className="font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl" ref={titleRef}>Hello, World</h1>
+        <h3 className="italic text-sm sm:text-base md:text-lg lg:text-xl mt-2 sm:mt-4">Play for the best experience</h3>
+        <PlayButton className="mt-4 sm:mt-6 md:mt-8" ref={playButtonRef}/>
       </section>
 
-      <section className="h-[100vh] w-full z-20 flex flex-col items-start leading-9 py-8">
-        <h1 className="font-header lg:text-9xl" ref={header1Ref}> A Small Genesis</h1>
+      <section className="min-h-screen w-full z-20 flex flex-col items-start justify-center leading-tight sm:leading-normal py-8 px-4 sm:px-8">
+        <h1 className="font-header text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[7.2rem]" ref={header1Ref}>A Small Genesis</h1>
       </section>
 
-      <section className="h-[100vh] w-full z-20 flex flex-col items-center leading-9 py-8">
-        <h1 className="relative font-header lg:text-9xl" ref={header2Ref}> Powerful Matter</h1>
+      <section className="min-h-screen w-full z-20 flex flex-col items-center justify-center leading-tight sm:leading-normal py-8 px-4 sm:px-8">
+        <h1 className="relative font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl" ref={header2Ref}>A Powerful Matter</h1>
+      </section>
+      <section className="min-h-screen w-full z-20 flex flex-col items-center justify-center leading-tight sm:leading-normal py-8 px-4 sm:px-8">
+        <h1 className="relative font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">The Light Within Us</h1>
       </section>
     </div>
   );
 }
+
