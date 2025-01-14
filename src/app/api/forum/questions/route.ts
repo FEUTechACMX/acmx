@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     const question = await prisma.question.create({
       data: {
         title,
-        content,
+        content,  
         author: { connect: { id: authorId } },
         tags: {
           connectOrCreate: tags.map((tag: string) => ({

@@ -2,23 +2,45 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Layout } from "~/components/Forum/layout"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import { Textarea } from "~/components/ui/textarea"
+import { Badge } from "~/components/ui/badge"
+import { useQuestions } from "~/lib/question-context"
+import { X } from 'lucide-react'
 
 export default function AskQuestion() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [tags, setTags] = useState<string[]>([])
-  const [tagInput, setTagInput] = useState("")
+  const [currentTag, setCurrentTag] = useState("")
   const router = useRouter()
+  const { addQuestion } = useQuestions()
 
-  const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && tagInput.trim()) {
-      e.preventDefault()
-      setTags([...tags, tagInput.trim()])
-      setTagInput("")
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const newQuestion = {
+      id: Date.now().toString(),
+      title,
+      content,
+      author: {
+        name: "Current User",
+        avatar: "https://github.com/shadcn.png",
+      },
+      tags,
+      likes: 0,
+      dislikes: 0,
+      replies: 0,
+      createdAt: new Date().toISOString(),
+    }
+    addQuestion(newQuestion)
+    router.push('/')
+  }
+
+  const handleAddTag = () => {
+    if (currentTag && !tags.includes(currentTag)) {
+      setTags([...tags, currentTag])
+      setCurrentTag("")
     }
   }
 
@@ -26,101 +48,61 @@ export default function AskQuestion() {
     setTags(tags.filter(tag => tag !== tagToRemove))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    try {
-      const response = await fetch('/api/questions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title,
-          content,
-          tags,
-          authorId: "user-id", // Replace with actual user ID from authentication
-        }),
-      })
-
-      if (response.ok) {
-        router.push('/forum')
-      } else {
-        // Handle error
-        console.error('Failed to create question')
-      }
-    } catch (error) {
-      console.error('Error:', error)
-    }
-  }
-
   return (
-    <Layout>
-      <div className="space-y-6">
+    <div className="max-w-2xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6">Ask a Question</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <h1 className="text-2xl font-bold">Ask a Question</h1>
-          <p className="text-sm text-muted-foreground">
-            Get help from the community by asking a clear and detailed question
-          </p>
+          <label htmlFor="title" className="block text-sm font-medium mb-1">Title</label>
+          <Input
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter the question title"
+            required
+          />
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label htmlFor="title" className="text-sm font-medium">
-              Title
-            </label>
+        <div>
+          <label htmlFor="content" className="block text-sm font-medium mb-1">Content</label>
+          <Textarea
+            id="content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Describe your question in detail"
+            required
+            className="min-h-[200px]"
+          />
+        </div>
+        <div>
+          <label htmlFor="tags" className="block text-sm font-medium mb-1">Tags</label>
+          <div className="flex items-center space-x-2">
             <Input
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="What's your question?"
+              id="tags"
+              value={currentTag}
+              onChange={(e) => setCurrentTag(e.target.value)}
+              placeholder="Add tags"
             />
+            <Button type="button" onClick={handleAddTag}>Add Tag</Button>
           </div>
-          <div className="space-y-2">
-            <label htmlFor="content" className="text-sm font-medium">
-              Content
-            </label>
-            <Textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Provide more details about your question..."
-              className="min-h-[200px]"
-            />
+          <div className="mt-2 flex flex-wrap gap-2">
+            {tags.map(tag => (
+              <Badge key={tag} variant="secondary" className="flex items-center space-x-1">
+                <span>{tag}</span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-5 w-5 p-0"
+                  onClick={() => handleRemoveTag(tag)}
+                >
+                  <X className="h-3 w-3" />
+                </Button>
+              </Badge>
+            ))}
           </div>
-          <div className="space-y-2">
-            <label htmlFor="tags" className="text-sm font-medium">
-              Tags
-            </label>
-            <div className="space-y-2">
-              <Input
-                id="tags"
-                value={tagInput}
-                onChange={(e) => setTagInput(e.target.value)}
-                onKeyDown={handleAddTag}
-                placeholder="Add tags (press Enter to add)"
-              />
-              <div className="flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 rounded-full text-xs bg-secondary text-secondary-foreground flex items-center"
-                  >
-                    #{tag}
-                    <button
-                      type="button"
-                      className="ml-2 hover:text-destructive"
-                      onClick={() => handleRemoveTag(tag)}
-                    >
-                      ×
-                    </button>
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-end space-x-4">
-            <Button type="submit">Submit Question</Button>
-          </div>
-        </form>
-      </div>
-    </Layout>
+        </div>
+        <Button type="submit">Submit Question</Button>
+      </form>
+    </div>
   )
 }
 
