@@ -47,3 +47,7 @@
     --ring: 288 51.9% 47.3%;
     --radius: 0.5rem;
 }
+
+html {
+    scroll-behavior: smooth;
+}
