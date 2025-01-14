@@ -20,7 +20,6 @@ const config = {
     extend: {
       fontFamily: {
         header: "var(--font-BostonAngel)",
-        "boston-angel": ["Boston Angel", "sans-serif"], // Add the custom font
       },
       colors: {
         customWhite: "#FEFAF6",
