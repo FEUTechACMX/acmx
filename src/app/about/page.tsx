@@ -15,72 +15,37 @@ export default function Home() {
   gsap.registerPlugin(TextPlugin);
   gsap.registerPlugin(ScrollTrigger);
 
-  useEffect(() => {
+  
+
+  useEffect( () => {
     if (titleRef.current) {
       gsap.to(titleRef.current, {
         text: "Enter the world of ACMx",
         duration: 1.5,
         delay: 0.7,
       });
-    }
-  }, []);
-
-  useEffect(() => {
+    };
     if (playButtonRef.current) {
       gsap.fromTo(
         playButtonRef.current,
-        {
-          opacity: 0,
-          y: 50,
-          duration: 2,
-          ease: "power2.out",
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 2,
-          ease: "power2.out",
-        },
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, duration: 0.5, delay: 0.5 }
       );
-    }
-  }, []);
-
-  useEffect(() => {
-    if (header1Ref.current) {
+    };
+    if(header1Ref.current){
       gsap.to(header1Ref.current, {
-        scrollTrigger: {
+        scrollTrigger:{
           trigger: header1Ref.current,
-          start: "top center",
+          start: "top 20%",
           end: "bottom top",
-          scrub: true,
+          scrub: 1,
+          markers:true
         },
-        x: 300,
+        x:'50%',
         ease: "none",
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (header2Ref.current) {
-      gsap.fromTo(
-        header2Ref.current,
-        {
-          x: 400, // Start from right
-        },
-        {
-          x: 0, // End at center (original position)
-          scrollTrigger: {
-            trigger: header2Ref.current,
-            start: "top bottom",
-            end: "bottom center",
-            scrub: true,
-            markers: true,
-          },
-          ease: "none",
-        },
-      );
-    }
-  }, []);
+      })
+    };
+  },[]);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0B0D17] text-customWhite">
@@ -112,7 +77,7 @@ export default function Home() {
 
       <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h1
-          className="relative font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
+          className="font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl x-overflow:hidden"
           ref={header2Ref}
         >
           A Powerful Matter
