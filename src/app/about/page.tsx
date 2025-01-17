@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     if (titleRef.current) {
       gsap.to(titleRef.current, {
-        text: "Enter the world of ACMx",
+        text: "Enter the world of ACM",
         duration: 1.5,
         delay: 0.7,
       });
@@ -46,51 +46,73 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (header1Ref.current) {
-      gsap.to(header1Ref.current, {
-        scrollTrigger: {
-          trigger: header1Ref.current,
-          start: "top center",
-          end: "bottom top",
-          scrub: true,
-        },
-        x: 300,
-        ease: "none",
-      });
-    }
+    const updateAnimation = () => {
+      const viewportWidth = window.innerWidth; // viewporth 
+      const xValue = viewportWidth < 768 ? 100 : 300;  // x-value will adjust according to the viewport width
+
+      if (header1Ref.current) {
+        gsap.to(header1Ref.current, {
+          scrollTrigger: {
+            trigger: header1Ref.current,
+            start: "top center",
+            end: "bottom top",
+            scrub: true,
+          },
+          x: xValue,
+          ease: "none",
+        });
+      }
+    };
+
+    updateAnimation(); 
+    window.addEventListener('resize', updateAnimation); 
+
+    return () => {
+      window.removeEventListener('resize', updateAnimation); 
+    };
   }, []);
 
   useEffect(() => {
-    if (header2Ref.current) {
-      gsap.fromTo(
-        header2Ref.current,
-        {
-          x: 400, // Start from right
-        },
-        {
-          x: 0, // End at center (original position)
-          scrollTrigger: {
-            trigger: header2Ref.current,
-            start: "top bottom",
-            end: "bottom center",
-            scrub: true,
-            markers: true,
+    const updateAnimation = () =>{
+      const viewportWidth = window.innerWidth; 
+      const xValue = viewportWidth < 768 ? 50 : 400;
+
+      if (header2Ref.current) {
+        gsap.fromTo(
+          header2Ref.current,
+          {
+            x: xValue, 
           },
-          ease: "none",
-        },
-      );
+          {
+            x: 0,   
+            scrollTrigger: {
+              trigger: header2Ref.current,
+              start: "top bottom",
+              end: "bottom center",
+              scrub: true,
+            },
+            ease: "none",
+          },
+        );
+      }
     }
+    updateAnimation();
+    window.addEventListener('resize', updateAnimation);
+    return () =>{
+      window.removeEventListener('resize', updateAnimation);
+    }
+
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#0B0D17] text-customWhite">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#0B0D17] text-customWhite overflow-x-hidden">
       <div className="fixed inset-0 z-0 h-full w-full">
         <StarsBackground />
         <ShootingStars />
       </div>
       <section className="z-20 flex h-screen flex-col items-center justify-center px-4 text-center leading-tight sm:leading-normal">
         <h1
-          className="font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
+          className="font-header text-5xl  md:text-6xl lg:text-7xl xl:text-9xl"
           ref={titleRef}
         >
           Hello, World
