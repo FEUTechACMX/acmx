@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
-
+import PlayerCard from "~/components/2024/about/PlayerCard";
 export default function Home() {
   const titleRef = useRef(null);
   const playButtonRef = useRef(null);
