@@ -6,7 +6,8 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
-import PlayerCard from "~/components/2024/about/PlayerCard";
+import  destroyedEarth from "/public/about/fragments.svg";
+import UserCard from "~/components/2024/about/Card";
 export default function Home() {
   const titleRef = useRef(null);
   const playButtonRef = useRef(null);
@@ -98,8 +99,10 @@ export default function Home() {
       <div className="fixed inset-0 z-0 h-full w-full">
         <StarsBackground />
         <ShootingStars />
+        <img className="z-20 absolute inset-0 m-auto h-auto w-auto" src="/about/Earth.png" alt="" />
+        <img className="z-20 absolute inset-0 m-auto h-auto w-auto" src="about/DividedWorld.png" alt="" />
       </div>
-      <section className="z-20 flex h-screen flex-col items-center justify-center px-4 text-center leading-tight sm:leading-normal">
+      <section className="z-30 flex h-screen flex-col items-center justify-center px-4 text-center leading-tight sm:leading-normal">
         <h1
           className="font-header text-5xl  md:text-6xl lg:text-7xl xl:text-9xl"
           ref={titleRef}
@@ -112,7 +115,7 @@ export default function Home() {
         <PlayButton className="mt-4 sm:mt-6 md:mt-8" ref={playButtonRef} />
       </section>
 
-      <section className="z-20 flex min-h-screen w-full flex-col items-start justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+      <section className="z-30 flex min-h-screen w-full flex-col items-start justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h1
           className="font-header text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[7.2rem]"
           ref={header1Ref}
@@ -121,7 +124,7 @@ export default function Home() {
         </h1>
       </section>
 
-      <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+      <section className="z-30 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h1
           className="font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl x-overflow:hidden"
           ref={header2Ref}
@@ -129,10 +132,13 @@ export default function Home() {
           A Powerful Matter
         </h1>
       </section>
-      <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+      <section className="z-30 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h1 className="relative font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">
           The Light Within Us
         </h1>
+      </section>
+      <section className="z-30 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+        <UserCard />
       </section>
     </div>
   );
