@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
+
 import Fragments from "~/components/2024/about/Fragments";
 
 export default function Home() {
@@ -138,7 +139,34 @@ export default function Home() {
           The Light Within Us
         </h1>
       </section>
+      <section className="z-20 flex flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal w-full">
+        <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+
+          <div className="bg-gray-200 w-full h-64 rounded-lg shadow-md flex flex-col items-center justify-center">
+            <h3 className="text-lg font-semibold">Placeholder 1</h3>
+            <p className="text-sm text-gray-600">This is a placeholder card.</p>
+          </div>
+
+          <div className="bg-gray-200 w-full h-64 rounded-lg shadow-md flex flex-col items-center justify-center">
+            <h3 className="text-lg font-semibold">Placeholder 2</h3>
+            <p className="text-sm text-gray-600">This is a placeholder card.</p>
+          </div>
+
+          <div className="bg-gray-200 w-full h-64 rounded-lg shadow-md flex flex-col items-center justify-center">
+            <h3 className="text-lg font-semibold">Placeholder 3</h3>
+            <p className="text-sm text-gray-600">This is a placeholder card.</p>
+          </div>
+        </div>
+      </section>
+
+      
+
+
+
     </div>
   );
 }
+
+
 
