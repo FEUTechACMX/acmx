@@ -23,6 +23,7 @@ const config = {
       },
       colors: {
         customWhite: "#FEFAF6",
+        navcol: "#151515",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
