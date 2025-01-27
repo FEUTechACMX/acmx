@@ -138,26 +138,12 @@ export default function Home() {
       </section>
       <section className="z-20 flex w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h2 className="mb-6 text-3xl font-bold">Meet Our Team</h2>
-        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-          <div className="flex h-64 w-full flex-col items-center justify-center rounded-lg bg-gray-200 shadow-md">
-            <h3 className="text-lg font-semibold">Placeholder 1</h3>
-            <p className="text-sm text-gray-600">This is a placeholder card.</p>
-          </div>
-
-          <div className="flex h-64 w-full flex-col items-center justify-center rounded-lg bg-gray-200 shadow-md">
-            <h3 className="text-lg font-semibold">Placeholder 2</h3>
-            <p className="text-sm text-gray-600">This is a placeholder card.</p>
-          </div>
-
-          <div className="flex h-64 w-full flex-col items-center justify-center rounded-lg bg-gray-200 shadow-md">
-            <h3 className="text-lg font-semibold">Placeholder 3</h3>
-            <p className="text-sm text-gray-600">This is a placeholder card.</p>
-          </div>
+        <div className="flex flex-wrap justify-center gap-4">
+          <TeamCards teamKey="about" />
+          <TeamCards teamKey="events" />
+          <TeamCards teamKey="featured" />
+          <TeamCards teamKey="committees" />
         </div>
-      </section>
-
-      <section>
-        <TeamCards />
       </section>
     </div>
   );
