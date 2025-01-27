@@ -34,7 +34,7 @@ const FragmentsAnimation = () => {
               ease: "power2.out",
               scrollTrigger: {
                 trigger: container,
-                start: "top top",
+                start: "bottom top",
                 end: "bottom bottom",
                 scrub: 1.5,
                 toggleActions: "play reverse play reverse",
