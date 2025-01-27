@@ -4,3 +4,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Cascadia Code";
+  src: url("/fonts/Cascadia.ttf") format("truetype"); /* Adjust the path and format if needed */
+  font-weight: normal;
+  font-style: normal;
+}

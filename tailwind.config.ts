@@ -20,6 +20,7 @@ const config = {
     extend: {
       fontFamily: {
         header: "var(--font-BostonAngel)",
+        cascadia: ["Cascadia", "monospace"],
       },
       colors: {
         customWhite: "#FEFAF6",
