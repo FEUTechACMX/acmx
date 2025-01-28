@@ -1,30 +1,57 @@
 import Image from "next/Image";
-export default function TeamCards() {
+
+const teams = {
+  about: {
+    name: "ABOUT",
+    border: "/about/card/teamCard/teamDesign/aboutBorder.svg",
+    design: "/about/card/teamCard/teamDesign/aboutX.svg",
+    color: "#ff8bf8",
+  },
+  featured: {
+    name: "FEATURED",
+    border: "/about/card/teamCard/teamDesign/featuredBorder.svg",
+    design: "/about/card/teamCard/teamDesign/featuredX.svg",
+    color: "#85ff92",
+  },
+  events: {
+    name: "EVENTS",
+    border: "/about/card/teamCard/teamDesign/eventsBorder.svg",
+    design: "/about/card/teamCard/teamDesign/eventsX.svg",
+    color: "#e96b61",
+  },
+  committees: {
+    name: "COMMITTEES",
+    border: "/about/card/teamCard/teamDesign/CommitteesBorder.svg",
+    design: "/about/card/teamCard/teamDesign/committeesX.svg",
+    color: "#1dcdff",
+  },
+};
+
+export default function TeamCards({ teamKey }) {
+  const team = teams[teamKey] || { name: "Unknown" }; // Default fallback
+
   return (
-    <div className="relative h-[208.3px] w-[541.6px]">
-      <Image
-        className="absolute"
-        src={"/about/card/teamCard/teamCardBase.svg"}
-        alt="team card base "
-        height={208.3}
-        width={541.6}
+    <div className="relative h-[247.33px] w-[500.6px]">
+      <img
+        className="absolute h-[247.33px] w-[500.6px]"
+        src="/about/card/teamCard/teamCardBase.svg"
+        alt=""
       />
-      <Image
-        className="absolute"
-        src={"/about/card/teamCard/teamCardBorder.svg"}
-        alt="team card border "
-        height={208.3}
-        width={541.6}
+      <img
+        className="absolute h-[247.33px] w-[500.6px]"
+        src={team.border}
+        alt=""
       />
-      <Image
-        className="absolute"
-        src={"/about/card/teamCard/TeamCardX.svg"}
-        alt="team card top "
-        height={208.3}
-        width={541.6}
+      <img
+        className="absolute h-[247.33px] w-[500.6px]"
+        src={team.design}
+        alt=""
       />
-      <div className="info absolute flex h-full w-full items-center justify-center">
-        <h1>ACMX</h1>
+      <div
+        className="absolute flex h-full w-full items-center justify-center font-cascadia"
+        style={{ color: team.color }}
+      >
+        <h1>{team.name}</h1>
       </div>
     </div>
   );
