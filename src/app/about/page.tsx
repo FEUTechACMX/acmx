@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
 import TeamCards from "~/components/2024/about/TeamCards";
 import Fragments from "~/components/2024/about/Fragments";
+import Info from "~/components/2024/about/Info";
 
 export default function Home() {
   const titleRef = useRef(null);
@@ -155,7 +156,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <Info />
       <section>
         <TeamCards />
       </section>
