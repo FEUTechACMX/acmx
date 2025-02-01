@@ -46,7 +46,7 @@ export default function AboutTeam() {
         <h2 className="mb-8 text-center text-3xl font-bold text-[#8e44ad]">
           Our Team
         </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-20 md:grid-cols-2 lg:grid-cols-3">
           {[
             {
               name: "Alice Johnson",
