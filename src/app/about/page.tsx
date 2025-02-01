@@ -9,6 +9,18 @@ import { useEffect, useRef } from "react";
 import TeamCards from "~/components/2024/about/TeamCards";
 import Fragments from "~/components/2024/about/Fragments";
 import Info from "~/components/2024/about/Info";
+import AboutFooter from "~/components/2024/about/AboutFooter";
+import { Card } from "~/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@radix-ui/react-accordion";
+import AboutPageTeam from "~/components/2024/about/AboutPageTeam";
+import EventsTeam from "~/components/2024/about/EventsTeam";
+import Committees from "~/components/2024/about/Committees";
+import ForumsTeam from "~/components/2024/about/ForumsTeam";
 
 export default function Home() {
   const titleRef = useRef(null);
@@ -140,12 +152,50 @@ export default function Home() {
       <section className="z-20 flex w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h2 className="mb-6 text-3xl font-bold">Meet Our Team</h2>
         <div className="flex flex-wrap justify-center gap-4">
-          <TeamCards teamKey="about" />
-          <TeamCards teamKey="events" />
-          <TeamCards teamKey="featured" />
-          <TeamCards teamKey="committees" />
+          <Accordion type="multiple">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                <TeamCards teamKey="about" />
+              </AccordionTrigger>
+              <AccordionContent>
+                <AboutPageTeam />
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2">
+              <AccordionTrigger>
+                <TeamCards teamKey="events" />
+              </AccordionTrigger>
+              <AccordionContent>
+                <EventsTeam />
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3">
+              <AccordionTrigger>
+                <TeamCards teamKey="featured" />
+              </AccordionTrigger>
+              <AccordionContent>
+                <ForumsTeam />
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4">
+              <AccordionTrigger>
+                <TeamCards teamKey="committees" />
+              </AccordionTrigger>
+              <AccordionContent>
+                <Committees />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
+      <div>
+        <footer>
+          <AboutFooter />
+        </footer>
+      </div>
     </div>
   );
 }
