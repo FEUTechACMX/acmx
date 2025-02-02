@@ -46,7 +46,7 @@ export default function AboutTeam() {
         <h2 className="mb-8 text-center text-3xl font-bold text-[#8e44ad]">
           Our Team
         </h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-20 md:grid-cols-2 lg:grid-cols-3">
           {[
             {
               name: "Alice Johnson",
@@ -61,6 +61,16 @@ export default function AboutTeam() {
             {
               name: "Carol Williams",
               role: "UX Designer",
+              image: "/placeholder.svg?height=100&width=100",
+            },
+            {
+              name: "David Brown",
+              role: "Backend Engineer",
+              image: "/placeholder.svg?height=100&width=100",
+            },
+            {
+              name: "David Brown",
+              role: "Backend Engineer",
               image: "/placeholder.svg?height=100&width=100",
             },
             {
