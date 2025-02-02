@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutTeam() {
   useEffect(() => {
     const cards = document.querySelectorAll(".team-card");
-
+    const cards2 = document.querySelectorAll(".team-card2");
     cards.forEach((card, index) => {
       gsap.fromTo(
         card,
@@ -38,6 +38,36 @@ export default function AboutTeam() {
         },
       );
     });
+
+    cards2.forEach((card, index) => {
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0,
+          x: 100,
+          y: 100,
+          boxShadow: "0 0 8px rgba(255, 255, 255, 0.2)",
+        },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration: 1,
+          boxShadow: "0 0 16px rgba(255, 255, 255, 0.2)",
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            end: "top 30%",
+            scrub: true,
+            once: true,
+          },
+        },
+      );
+    }
+  
+    
+  );
   }, []);
 
   return (
@@ -46,40 +76,104 @@ export default function AboutTeam() {
         <h2 className="mb-8 text-center text-3xl font-bold text-[#8e44ad]">
           Our Team
         </h2>
-        <div className="grid gap-20 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-auto">
           {[
             {
-              name: "Alice Johnson",
+              name: "Xynil Jhed Lacap",
               role: "Lead Developer",
               image: "/placeholder.svg?height=100&width=100",
+              /*
+
+                Fullname: Xynil Jhed Lacap
+                Email: xylacap@gmail.com
+                Github: mr-jones123
+
+              */
             },
             {
-              name: "Bob Smith",
-              role: "Project Manager",
+              name: "Arjhine A. Ty",
+              role: "Lead Developer",
               image: "/placeholder.svg?height=100&width=100",
-            },
-            {
-              name: "Carol Williams",
-              role: "UX Designer",
-              image: "/placeholder.svg?height=100&width=100",
-            },
-            {
-              name: "David Brown",
-              role: "Backend Engineer",
-              image: "/placeholder.svg?height=100&width=100",
-            },
-            {
-              name: "David Brown",
-              role: "Backend Engineer",
-              image: "/placeholder.svg?height=100&width=100",
-            },
-            {
-              name: "David Brown",
-              role: "Backend Engineer",
-              image: "/placeholder.svg?height=100&width=100",
-            },
+
+              /*
+
+            Fullname: Arjhine A. Ty
+            Email: arjhibe@gmail.com
+            Phone: 09519647245
+            GitHub: arrogance231
+
+              */
+            }
           ].map((member) => (
             <Card key={member.name} className="team-card">
+              <CardContent className="flex flex-col items-center p-6">
+                <Avatar className="mb-4 h-24 w-24">
+                  <AvatarImage src={member.image} alt={member.name} />
+                  <AvatarFallback>
+                    {member.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-sm text-gray-500">{member.role}</p>
+                <div className="mt-2 flex space-x-2">
+                  <a href="#" className="text-gray-400 hover:text-[#8e44ad]">
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-[#8e44ad]">
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12">
+
+          {[
+            {
+              name: "Luigi Karl B. Limos",
+              role: "Project Developer",
+              image: "/placeholder.svg?height=100&width=100",
+              /* Fullname: Luigi Karl B. Limos
+                Email: luigikarlblimos@gmail.com
+                Phone: 09456176976
+                GitHub:	Kourai9*/
+            },
+            {
+              name: "Raphael Andre Mercado",
+              role: "Project Developer",
+              image: "/placeholder.svg?height=100&width=100",
+              /*  Fullname: Raphael Andre Mercado
+                  Email: raphaelandremercado@gmail.com 
+                  Phone: 09394261614
+                  GitHub: mercadoCODING*/
+            },
+            {
+              name: "Ric Ian I. Barrios",
+              role: "Project Developer",
+              image: "/placeholder.svg?height=100&width=100",
+              /*
+                Fullname:Ric Ian I. Barrios
+                Email:ricbarrios45@gmail.com 
+                Phone:09958440509
+                GitHub:Seedlign */
+            },
+            {
+              name: "John Kerby P. Lola",
+              role: "Project Developer",
+              image: "/placeholder.svg?height=100&width=100",
+              /*
+              Fullname: John Kerby P. Lola
+              Email: john.kerby@hotmail.com
+              Phone: 09569123977
+              GitHub: OnTheBarProg*/
+            },
+
+          ].map((member) => (
+            <Card key={member.name} className="team-card2">
               <CardContent className="flex flex-col items-center p-6">
                 <Avatar className="mb-4 h-24 w-24">
                   <AvatarImage src={member.image} alt={member.name} />
