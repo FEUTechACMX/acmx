@@ -21,7 +21,7 @@ import AboutPageTeam from "~/components/2024/about/AboutPageTeam";
 import EventsTeam from "~/components/2024/about/EventsTeam";
 import Committees from "~/components/2024/about/Committees";
 import ForumsTeam from "~/components/2024/about/ForumsTeam";
-
+import UserProfile from "~/components/2024/about/DynamicPage";
 export default function Home() {
   const titleRef = useRef(null);
   const playButtonRef = useRef(null);
@@ -191,6 +191,7 @@ export default function Home() {
           </Accordion>
         </div>
       </section>
+      <UserProfile />
       <div>
         <footer>
           <AboutFooter />
