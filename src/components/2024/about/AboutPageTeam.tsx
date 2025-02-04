@@ -5,6 +5,7 @@ import { Github, Linkedin } from "lucide-react";
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,10 +65,7 @@ export default function AboutTeam() {
           },
         },
       );
-    }
-  
-    
-  );
+    });
   }, []);
 
   return (
@@ -76,7 +74,7 @@ export default function AboutTeam() {
         <h2 className="mb-8 text-center text-3xl font-bold text-[#8e44ad]">
           Our Team
         </h2>
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mx-auto">
+        <div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
           {[
             {
               name: "Xynil Jhed Lacap",
@@ -103,35 +101,46 @@ export default function AboutTeam() {
             GitHub: arrogance231
 
               */
-            }
+            },
           ].map((member) => (
-            <Card key={member.name} className="team-card">
-              <CardContent className="flex flex-col items-center p-6">
-                <Avatar className="mb-4 h-24 w-24">
-                  <AvatarImage src={member.image} alt={member.name} />
-                  <AvatarFallback>
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <h3 className="text-lg font-semibold">{member.name}</h3>
-                <p className="text-sm text-gray-500">{member.role}</p>
-                <div className="mt-2 flex space-x-2">
-                  <a href="#" className="text-gray-400 hover:text-[#8e44ad]">
-                    <Github className="h-5 w-5" />
-                  </a>
-                  <a href="#" className="text-gray-400 hover:text-[#8e44ad]">
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
+            <ul>
+              <li>
+                <Link href="/about/1">
+                  <Card key={member.name} className="team-card">
+                    <CardContent className="flex flex-col items-center p-6">
+                      <Avatar className="mb-4 h-24 w-24">
+                        <AvatarImage src={member.image} alt={member.name} />
+                        <AvatarFallback>
+                          {member.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <h3 className="text-lg font-semibold">{member.name}</h3>
+                      <p className="text-sm text-gray-500">{member.role}</p>
+                      <div className="mt-2 flex space-x-2">
+                        <a
+                          href="#"
+                          className="text-gray-400 hover:text-[#8e44ad]"
+                        >
+                          <Github className="h-5 w-5" />
+                        </a>
+                        <a
+                          href="#"
+                          className="text-gray-400 hover:text-[#8e44ad]"
+                        >
+                          <Linkedin className="h-5 w-5" />
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </li>
+            </ul>
           ))}
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-12">
-
+        </div>
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             {
               name: "Luigi Karl B. Limos",
@@ -171,7 +180,6 @@ export default function AboutTeam() {
               Phone: 09569123977
               GitHub: OnTheBarProg*/
             },
-
           ].map((member) => (
             <Card key={member.name} className="team-card2">
               <CardContent className="flex flex-col items-center p-6">

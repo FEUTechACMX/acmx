@@ -19,6 +19,7 @@ import {
   AccordionContent,
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
+import Link from "next/link";
 
 export default function Home() {
   const titleRef = useRef(null);
@@ -189,7 +190,7 @@ export default function Home() {
           </Accordion>
         </div>
       </section>
-      <div></div>
+
       <div>
         <section className="z-20 flex w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal"></section>
       </div>
