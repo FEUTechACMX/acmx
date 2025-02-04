@@ -80,6 +80,8 @@ export default function AboutTeam() {
               name: "Xynil Jhed Lacap",
               role: "Lead Developer",
               image: "/placeholder.svg?height=100&width=100",
+              github: "mr-jones123",
+              linkedin: "xynil-jhed-lacap-76ba9029a",
               /*
 
                 Fullname: Xynil Jhed Lacap
@@ -92,6 +94,8 @@ export default function AboutTeam() {
               name: "Arjhine A. Ty",
               role: "Lead Developer",
               image: "/placeholder.svg?height=100&width=100",
+              github: "arrogance231",
+              linkedin: "arrochi",
 
               /*
 
@@ -103,41 +107,35 @@ export default function AboutTeam() {
               */
             },
           ].map((member) => (
-            <ul>
-              <li>
-                <Link href="/about/1">
-                  <Card key={member.name} className="team-card">
-                    <CardContent className="flex flex-col items-center p-6">
-                      <Avatar className="mb-4 h-24 w-24">
-                        <AvatarImage src={member.image} alt={member.name} />
-                        <AvatarFallback>
-                          {member.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
-                        </AvatarFallback>
-                      </Avatar>
-                      <h3 className="text-lg font-semibold">{member.name}</h3>
-                      <p className="text-sm text-gray-500">{member.role}</p>
-                      <div className="mt-2 flex space-x-2">
-                        <a
-                          href="#"
-                          className="text-gray-400 hover:text-[#8e44ad]"
-                        >
-                          <Github className="h-5 w-5" />
-                        </a>
-                        <a
-                          href="#"
-                          className="text-gray-400 hover:text-[#8e44ad]"
-                        >
-                          <Linkedin className="h-5 w-5" />
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </li>
-            </ul>
+            <Card key={member.name} className="team-card">
+              <CardContent className="flex flex-col items-center p-6">
+                <Avatar className="mb-4 h-24 w-24">
+                  <AvatarImage src={member.image} alt={member.name} />
+                  <AvatarFallback>
+                    {member.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-sm text-gray-500">{member.role}</p>
+                <div className="mt-2 flex space-x-2">
+                  <a
+                    href={`https://github.com/${member.github}`}
+                    className="text-gray-400 hover:text-[#8e44ad]"
+                  >
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={`https://linkedin.com/in/${member.linkedin}`}
+                    className="text-gray-400 hover:text-[#8e44ad]"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -146,6 +144,8 @@ export default function AboutTeam() {
               name: "Luigi Karl B. Limos",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
+              github: "Kourai9",
+              linkedin: "luigi-karl-b-limos-0b377226b",
               /* Fullname: Luigi Karl B. Limos
                 Email: luigikarlblimos@gmail.com
                 Phone: 09456176976
@@ -155,6 +155,8 @@ export default function AboutTeam() {
               name: "Raphael Andre Mercado",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
+              github: "mercadoCoding",
+              linkedin: "raphael-mercado-260464275",
               /*  Fullname: Raphael Andre Mercado
                   Email: raphaelandremercado@gmail.com 
                   Phone: 09394261614
@@ -164,16 +166,21 @@ export default function AboutTeam() {
               name: "Ric Ian I. Barrios",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
+              github: "Seedling",
+              linkedin: "ric-ian-b-907278320/",
+
               /*
                 Fullname:Ric Ian I. Barrios
                 Email:ricbarrios45@gmail.com 
                 Phone:09958440509
-                GitHub:Seedlign */
+                GitHub:Seedling */
             },
             {
               name: "John Kerby P. Lola",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
+              github: "OnTheBarProg",
+              linkedin: "john-kerby-lola-2547b932a",
               /*
               Fullname: John Kerby P. Lola
               Email: john.kerby@hotmail.com
@@ -195,10 +202,16 @@ export default function AboutTeam() {
                 <h3 className="text-lg font-semibold">{member.name}</h3>
                 <p className="text-sm text-gray-500">{member.role}</p>
                 <div className="mt-2 flex space-x-2">
-                  <a href="#" className="text-gray-400 hover:text-[#8e44ad]">
+                  <a
+                    href={`https://github.com/${member.github}`}
+                    className="text-gray-400 hover:text-[#8e44ad]"
+                  >
                     <Github className="h-5 w-5" />
                   </a>
-                  <a href="#" className="text-gray-400 hover:text-[#8e44ad]">
+                  <a
+                    href={`https://linkedin.com/in/${member.linkedin}`}
+                    className="text-gray-400 hover:text-[#8e44ad]"
+                  >
                     <Linkedin className="h-5 w-5" />
                   </a>
                 </div>
