@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import type { PDFDocument } from "pdf-lib";
 const undertakingEmbedImage = (
     imageBytes: Buffer,
     imgType: number,
