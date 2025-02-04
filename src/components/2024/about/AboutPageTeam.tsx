@@ -109,9 +109,9 @@ export default function AboutTeam() {
           ].map((member) => (
             <ul>
               <li>
-                <Link href="/about/1">
-                  <Card key={member.name} className="team-card">
-                    <CardContent className="flex flex-col items-center p-6">
+                <Card key={member.name} className="team-card">
+                  <CardContent className="flex flex-col items-center p-6">
+                    <Link href="/about/1">
                       <Avatar className="mb-4 h-24 w-24">
                         <AvatarImage src={member.image} alt={member.name} />
                         <AvatarFallback>
@@ -121,25 +121,25 @@ export default function AboutTeam() {
                             .join("")}
                         </AvatarFallback>
                       </Avatar>
-                      <h3 className="text-lg font-semibold">{member.name}</h3>
-                      <p className="text-sm text-gray-500">{member.role}</p>
-                      <div className="mt-2 flex space-x-2">
-                        <a
-                          href={`https://github.com/${member.github}`}
-                          className="text-gray-400 hover:text-[#8e44ad]"
-                        >
-                          <Github className="h-5 w-5" />
-                        </a>
-                        <a
-                          href={`https://linkedin.com/in/${member.linkedin}`}
-                          className="text-gray-400 hover:text-[#8e44ad]"
-                        >
-                          <Linkedin className="h-5 w-5" />
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
+                    </Link>
+                    <h3 className="text-lg font-semibold">{member.name}</h3>
+                    <p className="text-sm text-gray-500">{member.role}</p>
+                    <div className="mt-2 flex space-x-2">
+                      <a
+                        href={`https://github.com/${member.github}`}
+                        className="text-gray-400 hover:text-[#8e44ad]"
+                      >
+                        <Github className="h-5 w-5" />
+                      </a>
+                      <a
+                        href={`https://linkedin.com/in/${member.linkedin}`}
+                        className="text-gray-400 hover:text-[#8e44ad]"
+                      >
+                        <Linkedin className="h-5 w-5" />
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
               </li>
             </ul>
           ))}
