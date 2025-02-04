@@ -8,20 +8,18 @@ import { ScrollTrigger } from "gsap/all";
 import { useEffect, useRef } from "react";
 import TeamCards from "~/components/2024/about/TeamCards";
 import Fragments from "~/components/2024/about/Fragments";
+import AboutEventsTeam from "~/components/2024/about/EventsTeam";
+import AboutCommittees from "~/components/2024/about/Committees";
+import AboutForumsTeam from "~/components/2024/about/ForumsTeam";
+import AboutTeam from "~/components/2024/about/AboutPageTeam";
 import Info from "~/components/2024/about/Info";
-import AboutFooter from "~/components/2024/about/AboutFooter";
-import { Card } from "~/components/ui/card";
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
+  AccordionContent,
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
-import AboutPageTeam from "~/components/2024/about/AboutPageTeam";
-import EventsTeam from "~/components/2024/about/EventsTeam";
-import Committees from "~/components/2024/about/Committees";
-import ForumsTeam from "~/components/2024/about/ForumsTeam";
-import UserProfile from "~/components/2024/about/DynamicPage";
+
 export default function Home() {
   const titleRef = useRef(null);
   const playButtonRef = useRef(null);
@@ -158,7 +156,7 @@ export default function Home() {
                 <TeamCards teamKey="about" />
               </AccordionTrigger>
               <AccordionContent>
-                <AboutPageTeam />
+                <AboutTeam />
               </AccordionContent>
             </AccordionItem>
 
@@ -167,7 +165,7 @@ export default function Home() {
                 <TeamCards teamKey="events" />
               </AccordionTrigger>
               <AccordionContent>
-                <EventsTeam />
+                <AboutEventsTeam />
               </AccordionContent>
             </AccordionItem>
 
@@ -176,7 +174,7 @@ export default function Home() {
                 <TeamCards teamKey="featured" />
               </AccordionTrigger>
               <AccordionContent>
-                <ForumsTeam />
+                <AboutForumsTeam />
               </AccordionContent>
             </AccordionItem>
 
@@ -185,17 +183,15 @@ export default function Home() {
                 <TeamCards teamKey="committees" />
               </AccordionTrigger>
               <AccordionContent>
-                <Committees />
+                <AboutCommittees />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </div>
       </section>
-      <UserProfile />
+      <div></div>
       <div>
-        <footer>
-          <AboutFooter />
-        </footer>
+        <section className="z-20 flex w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal"></section>
       </div>
     </div>
   );

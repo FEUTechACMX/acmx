@@ -8,7 +8,7 @@ import gsap from "gsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function AboutTeam() {
+export default function AboutForumsTeam() {
   useEffect(() => {
     const cards = document.querySelectorAll(".team-card");
 
