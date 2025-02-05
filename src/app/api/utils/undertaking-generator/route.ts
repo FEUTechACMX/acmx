@@ -6,7 +6,8 @@ import { PDFDocument } from "pdf-lib";
 import undertakingEmbedImage from "~/utils/image";
 import serverWrapper from "~/utils/serverWrapper";
 import undertakingImgType from "~/utils/validImage";
-import { MAX_UNDERTAKING_IMG_SIZE, UndertakingBody, zodUndertaking } from "~/utils/zodUndertaking";
+import type { UndertakingBody } from "~/utils/zodUndertaking";
+import { MAX_UNDERTAKING_IMG_SIZE, zodUndertaking } from "~/utils/zodUndertaking";
 import undertakingCredits from "./contributors";
 const contributorsBuffer = Buffer.from(undertakingCredits);
 
@@ -200,7 +201,7 @@ export const POST = serverWrapper(async (req) => {
   const uniName = universityNames.get(enrollmentFormat);
   if (!uniName) throw new Error("Invalid university");
   const title = fontSize.get(enrollmentFormat);
-  for await (const course of courses) {
+  for (const course of courses) {
     const pdfDoc = await PDFDocument.load(templatePdfBytes);
     const firstPage = pdfDoc.getPages()[0];
     if (!firstPage) throw new Error("No pages found");
@@ -216,11 +217,9 @@ export const POST = serverWrapper(async (req) => {
     );
   }
   zip.file("CONTRIBUTORS.md", contributorsBuffer);
-  return new NextResponse(
-    await zip.generateAsync({ type: "blob" }),
-    {
-      status: 200,
-      headers,
-    },
-  );
+  const zipContent = await zip.generateAsync({ type: "blob" });
+  return new NextResponse(zipContent, {
+    status: 200,
+    headers,
+  });
 });
