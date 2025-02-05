@@ -1,11 +1,12 @@
 "use client";
-import UserProfile from "~/components/2024/about/DynamicPage";
-import { gsap } from "gsap";
+import { use } from "react";
+import { useParams } from "next/navigation"; // Ensure you're using the correct hook
 import { ShootingStars } from "~/components/ui/shooting-stars";
 import { StarsBackground } from "~/components/ui/stars-background";
+import UserProfile from "~/components/2024/about/DynamicPage";
 
-const page = ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+function Page() {
+  const params = useParams();
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center overflow-x-hidden bg-[#0B0D17] text-customWhite">
@@ -16,6 +17,6 @@ const page = ({ params }: { params: { id: string } }) => {
       <UserProfile />
     </div>
   );
-};
+}
 
-export default page;
+export default Page;
