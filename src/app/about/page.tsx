@@ -115,7 +115,7 @@ export default function Home() {
       </div>
       <section className="z-20 flex h-screen flex-col items-center justify-center px-4 text-center leading-tight sm:leading-normal">
         <h1
-          className="font-header text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
+          className="font-boston-angel text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
           ref={titleRef}
         >
           Hello, World
@@ -128,7 +128,7 @@ export default function Home() {
 
       <section className="z-20 flex min-h-screen w-full flex-col items-start justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h1
-          className="font-header text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[7.2rem]"
+          className="font-boston-angel text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[7.2rem]"
           ref={header1Ref}
         >
           A Small Genesis
@@ -137,14 +137,14 @@ export default function Home() {
 
       <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h1
-          className="x-overflow:hidden font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
+          className="x-overflow:hidden font-boston-angel text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
           ref={header2Ref}
         >
           A Powerful Matter
         </h1>
       </section>
       <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
-        <h1 className="relative font-header text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">
+        <h1 className="font-boston-angel relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">
           The Light Within Us
         </h1>
       </section>

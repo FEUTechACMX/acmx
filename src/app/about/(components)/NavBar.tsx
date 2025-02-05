@@ -20,11 +20,11 @@ const Navbar = () => {
               className="xl:h-[40px] xl:w-[40px]"
               alt="ACMX Logo"
             />
-            <span className="ml-1 text-center font-header text-lg font-bold text-customWhite xl:text-xl">
+            <span className="font-boston-angel ml-1 text-center text-lg font-bold text-customWhite xl:text-xl">
               Feu TECH ACM
             </span>
           </div>
-          <div className="flex w-full items-center justify-center font-header font-bold max-md:hidden">
+          <div className="font-boston-angel flex w-full items-center justify-center font-bold max-md:hidden">
             <ul className="flex md:gap-10 xl:gap-20">
               {navLinks.map((item) => (
                 <li key={item.name} className="flex items-center">
