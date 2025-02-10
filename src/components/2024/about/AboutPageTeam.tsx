@@ -77,6 +77,7 @@ export default function AboutTeam() {
         <div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
           {[
             {
+              userId: "mr-jones123",
               name: "Xynil Jhed Lacap",
               role: "Lead Developer",
               image: "/placeholder.svg?height=100&width=100",
@@ -91,6 +92,7 @@ export default function AboutTeam() {
               */
             },
             {
+              userId: "arrogance231",
               name: "Arjhine A. Ty",
               role: "Lead Developer",
               image: "/placeholder.svg?height=100&width=100",
@@ -111,7 +113,7 @@ export default function AboutTeam() {
               <li>
                 <Card key={member.name} className="team-card">
                   <CardContent className="flex flex-col items-center p-6">
-                    <Link href="/about/1">
+                    <Link href={`/about/${member.userId}`}>
                       <Avatar className="mb-4 h-24 w-24">
                         <AvatarImage src={member.image} alt={member.name} />
                         <AvatarFallback>
@@ -147,6 +149,7 @@ export default function AboutTeam() {
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             {
+              userId: "Kourai",
               name: "Luigi Karl B. Limos",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
@@ -158,6 +161,7 @@ export default function AboutTeam() {
                 GitHub:	Kourai9*/
             },
             {
+              userId: "mercadoCoding",
               name: "Raphael Andre Mercado",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
@@ -169,6 +173,7 @@ export default function AboutTeam() {
                   GitHub: mercadoCODING*/
             },
             {
+              userId: "Seedling",
               name: "Ric Ian I. Barrios",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
@@ -182,6 +187,7 @@ export default function AboutTeam() {
                 GitHub:Seedling */
             },
             {
+              userId: "OnTheBarProg",
               name: "John Kerby P. Lola",
               role: "Project Developer",
               image: "/placeholder.svg?height=100&width=100",
@@ -196,15 +202,17 @@ export default function AboutTeam() {
           ].map((member) => (
             <Card key={member.name} className="team-card2">
               <CardContent className="flex flex-col items-center p-6">
-                <Avatar className="mb-4 h-24 w-24">
-                  <AvatarImage src={member.image} alt={member.name} />
-                  <AvatarFallback>
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
+                <Link href={`/about/${member.userId}`}>
+                  <Avatar className="mb-4 h-24 w-24">
+                    <AvatarImage src={member.image} alt={member.name} />
+                    <AvatarFallback>
+                      {member.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
                 <h3 className="text-lg font-semibold">{member.name}</h3>
                 <p className="text-sm text-gray-500">{member.role}</p>
                 <div className="mt-2 flex space-x-2">
