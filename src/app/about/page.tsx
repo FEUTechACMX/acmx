@@ -12,7 +12,7 @@ import AboutEventsTeam from "~/components/2024/about/EventsTeam";
 import AboutCommittees from "~/components/2024/about/Committees";
 import AboutForumsTeam from "~/components/2024/about/ForumsTeam";
 import AboutTeam from "~/components/2024/about/AboutPageTeam";
-import Info from "~/components/2024/about/Info";
+
 import {
   Accordion,
   AccordionItem,
@@ -152,7 +152,7 @@ export default function Home() {
         </h1>
         <div className="mt-8 flex gap-8">
   <Orb />
-  <Orb />
+
 </div>
       </section>
       <section className="z-20 flex w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
