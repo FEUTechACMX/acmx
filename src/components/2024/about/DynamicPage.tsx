@@ -47,7 +47,7 @@ function Links({ GitHub, LinkedIn, facebook }) {
           className="absolute h-full w-full"
           alt="Social HUD"
         />
-        <div className="flex w-full flex-col items-center justify-center text-lg md:flex-row md:text-xl">
+        <div className="flex w-full flex-col items-center justify-between text-lg md:flex-row md:text-xl">
           <div className="ml-10 flex items-center gap-1">
             <Github className="h-6-w-6" />
             <h1>Github:</h1>
@@ -237,16 +237,16 @@ export default function UserProfile({ userId }) {
 
           {/* Second Section (Snap Start) */}
           <div className="flex h-[100vh] w-full snap-start flex-col items-center justify-evenly lg:w-[60vw]">
-            <Links
-              GitHub={member?.GitHub}
-              facebook={member?.facebook}
-              LinkedIn={member?.LinkedIn}
-            />
             <Info
               name={member?.name}
               role={member?.role}
               phoneNumber={member?.phoneNumber}
               email={member?.email}
+            />
+            <Links
+              GitHub={member?.GitHub}
+              facebook={member?.facebook}
+              LinkedIn={member?.LinkedIn}
             />
           </div>
         </div>
