@@ -75,8 +75,8 @@ function Links({ GitHub, LinkedIn, facebook }) {
 
 function Info({ name, role, phoneNumber, email }) {
   return (
-    <div className="details h-[40vh] w-[90%] rounded-lg shadow-lg drop-shadow-[0_0_15px_rgba(0,255,255,0.8)] md:w-[75%] lg:w-[55%]">
-      <div className="relative flex h-[40vh] w-full flex-col items-center justify-evenly sm:p-8 md:p-10">
+    <div className="details h-[40vh] w-[90%] rounded-lg shadow-lg drop-shadow-[0_0_15px_rgba(0,255,255,0.8)] md:mt-10 md:w-[75%] lg:w-[55%]">
+      <div className="relative flex h-[30vh] w-full flex-col items-center justify-evenly sm:p-8">
         <img
           className="absolute h-full w-full"
           src="/about/profilepage/info.png"
@@ -236,7 +236,7 @@ export default function UserProfile({ userId }) {
           </div>
 
           {/* Second Section (Snap Start) */}
-          <div className="flex h-[100vh] w-full snap-start flex-col items-center justify-evenly lg:w-[60vw]">
+          <div className="mt-5 flex h-[100vh] w-full snap-start flex-col items-center justify-evenly lg:w-[60vw]">
             <Info
               name={member?.name}
               role={member?.role}
