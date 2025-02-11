@@ -111,8 +111,8 @@ export default function AboutTeam() {
           ].map((member) => (
             <ul>
               <li>
-                <Card key={member.name} className="team-card cursor-pointer">
-                  <CardContent className="flex flex-col items-center p-6">
+                <Card key={member.name} className="team-card cursor-pointer bg-[#1dcdff]">
+                  <CardContent className="flex flex-col items-center p-6 ">
                     <Link href={`/about/${member.userId}`}>
                       <Avatar className="mb-4 h-24 w-24">
                         <AvatarImage src={member.image} alt={member.name} />
@@ -124,18 +124,18 @@ export default function AboutTeam() {
                         </AvatarFallback>
                       </Avatar>
                     </Link>
-                    <h3 className="text-lg font-semibold">{member.name}</h3>
-                    <p className="text-sm text-gray-500">{member.role}</p>
+                    <h3 className="text-lg text-blue-950 font-bold">{member.name}</h3>
+                    <p className="text-sm text-black">{member.role}</p>
                     <div className="mt-2 flex space-x-2">
                       <a
                         href={`https://github.com/${member.github}`}
-                        className="text-gray-400 hover:text-[#8e44ad]"
+                        className="text-slate-800 hover:text-[#8e44ad]"
                       >
                         <Github className="h-5 w-5" />
                       </a>
                       <a
                         href={`https://linkedin.com/in/${member.linkedin}`}
-                        className="text-gray-400 hover:text-[#8e44ad]"
+                        className="text-slate-800 hover:text-[#8e44ad]"
                       >
                         <Linkedin className="h-5 w-5" />
                       </a>
@@ -200,7 +200,7 @@ export default function AboutTeam() {
               GitHub: OnTheBarProg*/
             },
           ].map((member) => (
-            <Card key={member.name} className="team-card2 cursor-pointer">
+            <Card key={member.name} className="team-card cursor-pointer bg-[#1dcdff]">
               <CardContent className="flex flex-col items-center p-6">
                 <Link href={`/about/${member.userId}`}>
                   <Avatar className="mb-4 h-24 w-24">
@@ -213,18 +213,18 @@ export default function AboutTeam() {
                     </AvatarFallback>
                   </Avatar>
                 </Link>
-                <h3 className="text-lg font-semibold">{member.name}</h3>
-                <p className="text-sm text-gray-500">{member.role}</p>
+                <h3 className="text-lg text-blue-950 font-bold">{member.name}</h3>
+                <p className="text-sm text-black">{member.role}</p>
                 <div className="mt-2 flex space-x-2">
                   <a
                     href={`https://github.com/${member.github}`}
-                    className="text-gray-400 hover:text-[#8e44ad]"
+                    className="text-slate-800 hover:text-[#8e44ad]"
                   >
                     <Github className="h-5 w-5" />
                   </a>
                   <a
                     href={`https://linkedin.com/in/${member.linkedin}`}
-                    className="text-gray-400 hover:text-[#8e44ad]"
+                    className="text-slate-800 hover:text-[#8e44ad]"
                   >
                     <Linkedin className="h-5 w-5" />
                   </a>
