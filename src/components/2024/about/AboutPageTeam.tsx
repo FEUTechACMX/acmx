@@ -74,7 +74,8 @@ export default function AboutTeam() {
         <h2 className="mb-8 text-center text-3xl font-bold text-[#8e44ad]">
           Our Team
         </h2>
-        <div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <div className="mx-auto grid grid-cols-2 place-items-center">
+
           {[
             {
               userId: "mr-jones123",
@@ -111,7 +112,7 @@ export default function AboutTeam() {
           ].map((member) => (
             <ul>
               <li>
-                <Card key={member.name} className="team-card cursor-pointer bg-[#1dcdff]">
+                <Card key={member.name} className="team-card cursor-pointer w-64 bg-[#1dcdff]">
                   <CardContent className="flex flex-col items-center p-6 ">
                     <Link href={`/about/${member.userId}`}>
                       <Avatar className="mb-4 h-24 w-24">
@@ -200,7 +201,7 @@ export default function AboutTeam() {
               GitHub: OnTheBarProg*/
             },
           ].map((member) => (
-            <Card key={member.name} className="team-card cursor-pointer bg-[#1dcdff]">
+            <Card key={member.name} className="team-card w-64 cursor-pointer bg-[#1dcdff]">
               <CardContent className="flex flex-col items-center p-6">
                 <Link href={`/about/${member.userId}`}>
                   <Avatar className="mb-4 h-24 w-24">
