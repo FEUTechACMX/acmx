@@ -12,10 +12,13 @@ import AboutEventsTeam from "~/components/2024/about/EventsTeam";
 import AboutCommittees from "~/components/2024/about/Committees";
 import AboutForumsTeam from "~/components/2024/about/ForumsTeam";
 import AboutTeam from "~/components/2024/about/AboutPageTeam";
+<<<<<<< HEAD
 import AboutCard from "~/components/2024/about/AboutCard";
 import AboutACMX from "~/components/2024/about/AboutACMX";
 import AboutMissionVision from "~/components/2024/about/AboutMissionVision";
 import AboutSponsor from "~/components/2024/about/AboutSponsor";
+=======
+>>>>>>> 3b66adf745fbb24a7a2b7fceb5c23fea8881af00
 
 import {
   Accordion,
@@ -24,6 +27,7 @@ import {
   AccordionTrigger,
 } from "@radix-ui/react-accordion";
 import Link from "next/link";
+import Orb from "~/components/2024/about/Orb";
 
 export default function Home() {
   const titleRef = useRef(null);
@@ -113,10 +117,12 @@ export default function Home() {
       <div className="fixed inset-0 z-0 h-full w-full">
         <StarsBackground />
         <ShootingStars />
+        
         <div className="flex h-[100vh] items-center justify-center">
           <Fragments />
         </div>
       </div>
+
       <section className="z-20 flex h-screen flex-col items-center justify-center px-4 text-center leading-tight sm:leading-normal">
         <h1
           className="font-boston-angel text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
@@ -148,9 +154,13 @@ export default function Home() {
         </h1>
       </section>
       <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
-        <h1 className="font-boston-angel relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">
+        <h1 className="relative font-boston-angel text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">
           The Light Within Us
         </h1>
+        <div className="mt-8 flex gap-8">
+  <Orb />
+
+</div>
       </section>
 
       <section className="relative z-30 flex items-center justify-center w-full min-h-screen bg-transparent px-10">

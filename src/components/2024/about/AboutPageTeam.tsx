@@ -74,12 +74,14 @@ export default function AboutTeam() {
         <h2 className="mb-8 text-center text-3xl font-bold text-[#8e44ad]">
           Our Team
         </h2>
-        <div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+        <div className="mx-auto grid grid-cols-2 place-items-center">
+
           {[
             {
+              userId: "mr-jones123",
               name: "Xynil Jhed Lacap",
               role: "Lead Developer",
-              image: "/placeholder.svg?height=100&width=100",
+              image: "/about/AboutTeamPics/Xynil.jpg",
               github: "mr-jones123",
               linkedin: "xynil-jhed-lacap-76ba9029a",
               /*
@@ -91,9 +93,10 @@ export default function AboutTeam() {
               */
             },
             {
+              userId: "arrogance231",
               name: "Arjhine A. Ty",
               role: "Lead Developer",
-              image: "/placeholder.svg?height=100&width=100",
+              image: "/about/AboutTeamPics/arjhine.jpg",
               github: "arrogance231",
               linkedin: "arrochi",
 
@@ -109,9 +112,9 @@ export default function AboutTeam() {
           ].map((member) => (
             <ul>
               <li>
-                <Card key={member.name} className="team-card">
-                  <CardContent className="flex flex-col items-center p-6">
-                    <Link href="/about/1">
+                <Card key={member.name} className="team-card cursor-pointer w-64 bg-[#1dcdff]">
+                  <CardContent className="flex flex-col items-center p-6 ">
+                    <Link href={`/about/${member.userId}`}>
                       <Avatar className="mb-4 h-24 w-24">
                         <AvatarImage src={member.image} alt={member.name} />
                         <AvatarFallback>
@@ -122,18 +125,18 @@ export default function AboutTeam() {
                         </AvatarFallback>
                       </Avatar>
                     </Link>
-                    <h3 className="text-lg font-semibold">{member.name}</h3>
-                    <p className="text-sm text-gray-500">{member.role}</p>
+                    <h3 className="text-lg text-blue-950 font-bold">{member.name}</h3>
+                    <p className="text-sm text-black">{member.role}</p>
                     <div className="mt-2 flex space-x-2">
                       <a
                         href={`https://github.com/${member.github}`}
-                        className="text-gray-400 hover:text-[#8e44ad]"
+                        className="text-slate-800 hover:text-[#8e44ad]"
                       >
                         <Github className="h-5 w-5" />
                       </a>
                       <a
                         href={`https://linkedin.com/in/${member.linkedin}`}
-                        className="text-gray-400 hover:text-[#8e44ad]"
+                        className="text-slate-800 hover:text-[#8e44ad]"
                       >
                         <Linkedin className="h-5 w-5" />
                       </a>
@@ -147,9 +150,10 @@ export default function AboutTeam() {
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             {
+              userId: "Kourai",
               name: "Luigi Karl B. Limos",
               role: "Project Developer",
-              image: "/placeholder.svg?height=100&width=100",
+              image: "/about/AboutTeamPics/Luigi.png",
               github: "Kourai9",
               linkedin: "luigi-karl-b-limos-0b377226b",
               /* Fullname: Luigi Karl B. Limos
@@ -158,9 +162,10 @@ export default function AboutTeam() {
                 GitHub:	Kourai9*/
             },
             {
+              userId: "mercadoCoding",
               name: "Raphael Andre Mercado",
               role: "Project Developer",
-              image: "/placeholder.svg?height=100&width=100",
+              image: "/about/AboutTeamPics/Mercado.jpg",
               github: "mercadoCoding",
               linkedin: "raphael-mercado-260464275",
               /*  Fullname: Raphael Andre Mercado
@@ -169,9 +174,10 @@ export default function AboutTeam() {
                   GitHub: mercadoCODING*/
             },
             {
+              userId: "Seedling",
               name: "Ric Ian I. Barrios",
               role: "Project Developer",
-              image: "/placeholder.svg?height=100&width=100",
+              image: "/about/AboutTeamPics/BARRIOS.png",
               github: "Seedling",
               linkedin: "ric-ian-b-907278320/",
 
@@ -182,9 +188,10 @@ export default function AboutTeam() {
                 GitHub:Seedling */
             },
             {
+              userId: "OnTheBarProg",
               name: "John Kerby P. Lola",
               role: "Project Developer",
-              image: "/placeholder.svg?height=100&width=100",
+              image: "/about/AboutTeamPics/Kerby.jpg",
               github: "OnTheBarProg",
               linkedin: "john-kerby-lola-2547b932a",
               /*
@@ -194,29 +201,31 @@ export default function AboutTeam() {
               GitHub: OnTheBarProg*/
             },
           ].map((member) => (
-            <Card key={member.name} className="team-card2">
+            <Card key={member.name} className="team-card w-64 cursor-pointer bg-[#1dcdff]">
               <CardContent className="flex flex-col items-center p-6">
-                <Avatar className="mb-4 h-24 w-24">
-                  <AvatarImage src={member.image} alt={member.name} />
-                  <AvatarFallback>
-                    {member.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-                <h3 className="text-lg font-semibold">{member.name}</h3>
-                <p className="text-sm text-gray-500">{member.role}</p>
+                <Link href={`/about/${member.userId}`}>
+                  <Avatar className="mb-4 h-24 w-24">
+                    <AvatarImage src={member.image} alt={member.name} />
+                    <AvatarFallback>
+                      {member.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
+                <h3 className="text-lg text-blue-950 font-bold">{member.name}</h3>
+                <p className="text-sm text-black">{member.role}</p>
                 <div className="mt-2 flex space-x-2">
                   <a
                     href={`https://github.com/${member.github}`}
-                    className="text-gray-400 hover:text-[#8e44ad]"
+                    className="text-slate-800 hover:text-[#8e44ad]"
                   >
                     <Github className="h-5 w-5" />
                   </a>
                   <a
                     href={`https://linkedin.com/in/${member.linkedin}`}
-                    className="text-gray-400 hover:text-[#8e44ad]"
+                    className="text-slate-800 hover:text-[#8e44ad]"
                   >
                     <Linkedin className="h-5 w-5" />
                   </a>
