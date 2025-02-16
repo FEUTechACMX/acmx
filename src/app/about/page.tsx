@@ -158,6 +158,7 @@ export default function Home() {
         <div className="mt-8 flex gap-8">
           <Orb />
         </div>
+        <Orb />
       </section>
       <section className="relative z-30 my-10 flex h-full min-h-40 w-full items-center justify-center px-4">
         <div className="relative max-w-6xl grid-cols-1 items-center gap-10">
