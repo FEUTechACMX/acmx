@@ -5,7 +5,7 @@ const users = [
     userId: "mr-jones123",
     name: "Xynil Jhed Lacap",
     role: "Lead Developer",
-    image: "/placeholder.svg?height=100&width=100",
+    image: "/about/AboutTeamPics/Xynil.jpg",
     GitHub: "mr-jones123",
     LinkedIn: "xynil-jhed-lacap-76ba9029a",
     bio: "Passionate software engineer with experience in full-stack development.",

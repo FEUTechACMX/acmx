@@ -12,7 +12,12 @@ import AboutEventsTeam from "~/components/2024/about/EventsTeam";
 import AboutCommittees from "~/components/2024/about/Committees";
 import AboutForumsTeam from "~/components/2024/about/ForumsTeam";
 import AboutTeam from "~/components/2024/about/AboutPageTeam";
-import Info from "~/components/2024/about/Info";
+import AboutCard from "~/components/2024/about/AboutCard";
+import AboutACMX from "~/components/2024/about/AboutACMX";
+import AboutMissionVision from "~/components/2024/about/AboutMissionVision";
+import AboutSponsor from "~/components/2024/about/AboutSponsor";
+
+
 import {
   Accordion,
   AccordionItem,
@@ -152,9 +157,21 @@ export default function Home() {
         </h1>
         <div className="mt-8 flex gap-8">
   <Orb />
-  <Orb />
 </div>
       </section>
+
+      <section className="relative z-30 flex items-center justify-center w-full min-h-40 px-4 p-20">
+  <div className="absolute inset-0 bg-gray-200/10 backdrop-blur-lg rounded-lg"></div>
+  <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-6xl">
+    <div className="flex justify-center"> 
+      <AboutACMX />
+    </div>
+    <div className="flex justify-center">
+      <AboutMissionVision />
+    </div>
+  </div>
+</section>
+
       <section className="z-20 flex w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h2 className="mb-6 text-3xl font-bold">Meet Our Team</h2>
         <div className="flex flex-wrap justify-center gap-4">

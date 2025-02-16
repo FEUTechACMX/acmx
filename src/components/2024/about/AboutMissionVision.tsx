@@ -1,44 +1,24 @@
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import AboutCard from "./AboutCard";
 
-export default function AboutMissionVision() {
+export default function MissionVision() {
   return (
-    <section
-      id="mission"
-      className="w-full bg-[#8e44ad] py-12 text-white md:py-24 lg:py-32"
-    >
-      <div className="container px-4 md:px-6">
-        <h2 className="mb-8 text-center text-3xl font-bold">
-          Our Mission & Vision
-        </h2>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <Card className="bg-white text-[#333333]">
-            <CardHeader>
-              <CardTitle className="text-[#8e44ad]">Mission</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>
-                To advance computing as a science and profession by fostering
-                the open exchange of information, promoting the highest
-                professional and ethical standards, and recognizing technical
-                excellence.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="bg-white text-[#333333]">
-            <CardHeader>
-              <CardTitle className="text-[#8e44ad]">Vision</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>
-                To be the premier organization for computing professionals,
-                driving innovation and excellence in the field of computer
-                science and technology, and inspiring the next generation of
-                tech leaders.
-              </p>
-            </CardContent>
-          </Card>
+    <section className="flex justify-center items-center py-10 px-6">
+      <AboutCard className="w-full max-w-3xl text-black" title="Mission & Vision" image="/about/GlitchingEarth 1.png">
+        <div className="grid grid-cols-2 gap-6">
+          <div>
+            <h2 className="text-lg font-semibold">Mission</h2>
+            <p className="text-justify">
+              To empower the FEU Tech computer science community through innovative technology and collaboration.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold">Vision</h2>
+            <p className="text-justify">
+              To become the leading platform for information exchange and collaboration in the FEU Tech community.
+            </p>
+          </div>
         </div>
-      </div>
+      </AboutCard>
     </section>
   );
 }
