@@ -9,7 +9,12 @@ interface CardProps {
   image?: string;
 }
 
-export default function AboutCard({ children, className = "", title, image }: CardProps) {
+export default function AboutCard({
+  children,
+  className = "",
+  title,
+  image,
+}: CardProps) {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
@@ -17,7 +22,7 @@ export default function AboutCard({ children, className = "", title, image }: Ca
     const card = e.currentTarget.getBoundingClientRect();
     const centerX = card.left + card.width / 2;
     const centerY = card.top + card.height / 2;
-    const x = (e.clientX - centerX) / 25; 
+    const x = (e.clientX - centerX) / 25;
     const y = (centerY - e.clientY) / 25;
 
     setRotateX(y);
@@ -31,9 +36,7 @@ export default function AboutCard({ children, className = "", title, image }: Ca
 
   return (
     <div
-      className={`relative flex flex-col rounded-3xl shadow-xl bg-gradient-to-b from-gray-700 via-[#0B0D17] to-black overflow-hidden 
-                  transition-transform duration-300 ease-out transform hover:shadow-[0_0_10px_rgba(255,255,255,0.8)] 
-                  w-full md:w-[500px] h-[400px] ${className}`}
+      className={`relative flex transform flex-col overflow-hidden rounded-3xl bg-gradient-to-b from-gray-700 via-[#0B0D17] to-black shadow-xl transition-transform duration-300 ease-out hover:shadow-[0_0_10px_rgba(255,255,255,0.8)] xl:h-full xl:w-full ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -41,13 +44,20 @@ export default function AboutCard({ children, className = "", title, image }: Ca
       }}
     >
       {image && (
-        <div className="relative w-full h-48 overflow-hidden">
-          <Image src={image} alt="Card Background" fill className="object-cover w-full h-full" />
+        <div className="relative h-full w-full overflow-hidden">
+          <Image
+            src={image}
+            alt="Card Background"
+            fill
+            className="h-full w-full object-cover"
+          />
         </div>
       )}
-      <div className="p-6 flex-1 flex flex-col justify-between">
-        {title && <h1 className="text-2xl font-bold mb-2 text-gray-100">{title}</h1>}
-        <p className="text-gray-100 flex-1">{children}</p>
+      <div className="flex flex-1 flex-col justify-between p-6">
+        {title && (
+          <h1 className="mb-2 text-2xl font-bold text-gray-100">{title}</h1>
+        )}
+        <p className="flex-1 text-gray-100">{children}</p>
       </div>
     </div>
   );
