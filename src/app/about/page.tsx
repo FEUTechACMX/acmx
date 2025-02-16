@@ -17,7 +17,6 @@ import AboutACMX from "~/components/2024/about/AboutACMX";
 import AboutMissionVision from "~/components/2024/about/AboutMissionVision";
 import AboutSponsor from "~/components/2024/about/AboutSponsor";
 
-
 import {
   Accordion,
   AccordionItem,
@@ -115,7 +114,7 @@ export default function Home() {
       <div className="fixed inset-0 z-0 h-full w-full">
         <StarsBackground />
         <ShootingStars />
-        
+
         <div className="flex h-[100vh] items-center justify-center">
           <Fragments />
         </div>
@@ -156,21 +155,21 @@ export default function Home() {
           The Light Within Us
         </h1>
         <div className="mt-8 flex gap-8">
-  <Orb />
-</div>
+          <Orb />
+        </div>
       </section>
 
-      <section className="relative z-30 flex items-center justify-center w-full min-h-40 px-4 p-20">
-  <div className="absolute inset-0 bg-gray-200/10 backdrop-blur-lg rounded-lg"></div>
-  <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 items-center max-w-6xl">
-    <div className="flex justify-center"> 
-      <AboutACMX />
-    </div>
-    <div className="flex justify-center">
-      <AboutMissionVision />
-    </div>
-  </div>
-</section>
+      <section className="relative z-30 flex min-h-40 w-full items-center justify-center p-20 px-4">
+        <div className="absolute inset-0 rounded-lg bg-gray-200/10 backdrop-blur-lg"></div>
+        <div className="relative grid max-w-6xl grid-cols-1 items-center gap-10 md:grid-cols-2">
+          <div className="flex justify-center">
+            <AboutACMX />
+          </div>
+          <div className="flex justify-center">
+            <AboutMissionVision />
+          </div>
+        </div>
+      </section>
 
       <section className="z-20 flex w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
         <h2 className="mb-6 text-3xl font-bold">Meet Our Team</h2>

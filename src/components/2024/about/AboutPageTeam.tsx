@@ -70,12 +70,11 @@ export default function AboutTeam() {
 
   return (
     <section id="team" className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6">
+      <div className="container w-full px-4 md:px-6">
         <h2 className="mb-8 text-center text-3xl font-bold text-[#8e44ad]">
           Our Team
         </h2>
-        <div className="mx-auto grid grid-cols-2 place-items-center">
-
+        <div className="flex w-full flex-col items-center justify-between md:flex-row lg:justify-evenly">
           {[
             {
               userId: "mr-jones123",
@@ -112,8 +111,11 @@ export default function AboutTeam() {
           ].map((member) => (
             <ul>
               <li>
-                <Card key={member.name} className="team-card cursor-pointer w-64 bg-[#1dcdff]">
-                  <CardContent className="flex flex-col items-center p-6 ">
+                <Card
+                  key={member.name}
+                  className="team-card m-5 w-64 cursor-pointer bg-[#1dcdff]"
+                >
+                  <CardContent className="flex flex-col items-center p-6">
                     <Link href={`/about/${member.userId}`}>
                       <Avatar className="mb-4 h-24 w-24">
                         <AvatarImage src={member.image} alt={member.name} />
@@ -125,7 +127,9 @@ export default function AboutTeam() {
                         </AvatarFallback>
                       </Avatar>
                     </Link>
-                    <h3 className="text-lg text-blue-950 font-bold">{member.name}</h3>
+                    <h3 className="text-lg font-bold text-blue-950">
+                      {member.name}
+                    </h3>
                     <p className="text-sm text-black">{member.role}</p>
                     <div className="mt-2 flex space-x-2">
                       <a
@@ -146,8 +150,8 @@ export default function AboutTeam() {
               </li>
             </ul>
           ))}
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        </div>{" "}
+        <div className="mt-12 grid place-content-center gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             {
               userId: "Kourai",
@@ -201,7 +205,10 @@ export default function AboutTeam() {
               GitHub: OnTheBarProg*/
             },
           ].map((member) => (
-            <Card key={member.name} className="team-card w-64 cursor-pointer bg-[#1dcdff]">
+            <Card
+              key={member.name}
+              className="team-card w-64 cursor-pointer bg-[#1dcdff]"
+            >
               <CardContent className="flex flex-col items-center p-6">
                 <Link href={`/about/${member.userId}`}>
                   <Avatar className="mb-4 h-24 w-24">
@@ -214,7 +221,9 @@ export default function AboutTeam() {
                     </AvatarFallback>
                   </Avatar>
                 </Link>
-                <h3 className="text-lg text-blue-950 font-bold">{member.name}</h3>
+                <h3 className="text-lg font-bold text-blue-950">
+                  {member.name}
+                </h3>
                 <p className="text-sm text-black">{member.role}</p>
                 <div className="mt-2 flex space-x-2">
                   <a
