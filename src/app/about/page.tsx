@@ -112,116 +112,117 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center overflow-x-hidden bg-[#0B0D17] text-customWhite">
-      <div className="fixed inset-0 z-0 h-full w-full">
-        <StarsBackground />
-        <ShootingStars />
+      <div className="flex min-h-screen flex-col items-center justify-center overflow-x-hidden bg-[#0B0D17] text-customWhite">
+        <div className="fixed inset-0 z-0 h-full w-full">
+          <StarsBackground />
+          <ShootingStars />
 
-        <div className="flex h-[100vh] items-center justify-center">
-          <Fragments />
+          <div className="flex h-[100vh] items-center justify-center">
+            <Fragments />
+          </div>
         </div>
-      </div>
 
-      <section className="z-20 flex h-screen flex-col items-center justify-center px-4 text-center leading-tight sm:leading-normal">
-        <h1
-          className="font-boston-angel text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
-          ref={titleRef}
-        >
-          Hello, World
-        </h1>
-        <h3 className="mt-2 text-sm italic sm:mt-4 sm:text-base md:text-lg lg:text-xl">
-          Play for the best experience
-        </h3>
-        <PlayButton className="mt-4 sm:mt-6 md:mt-8" ref={playButtonRef} />
-      </section>
+        <section className="z-20 flex h-screen flex-col items-center justify-center px-4 text-center leading-tight sm:leading-normal">
+          <h1
+            className="font-boston-angel text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
+            ref={titleRef}
+          >
+            Hello, World
+          </h1>
+          <h3 className="mt-2 text-sm italic sm:mt-4 sm:text-base md:text-lg lg:text-xl">
+            Play for the best experience
+          </h3>
+          <PlayButton className="mt-4 sm:mt-6 md:mt-8" ref={playButtonRef} />
+        </section>
 
-      <section className="z-20 flex min-h-screen w-full flex-col items-start justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
-        <h1
-          className="font-boston-angel text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[7.2rem]"
-          ref={header1Ref}
-        >
-          A Small Genesis
-        </h1>
-      </section>
+        <section className="z-20 flex min-h-screen w-full flex-col items-start justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+          <h1
+            className="font-boston-angel text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[7.2rem]"
+            ref={header1Ref}
+          >
+            A Small Genesis
+          </h1>
+        </section>
 
-      <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
-        <h1
-          className="x-overflow:hidden font-boston-angel text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
-          ref={header2Ref}
-        >
-          A Powerful Matter
-        </h1>
-      </section>
-      <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
-        <h1 className="relative font-boston-angel text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">
-          The Light Within Us
-        </h1>
-        <div className="mt-8 flex gap-8">
+        <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+          <h1
+            className="x-overflow:hidden font-boston-angel text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl"
+            ref={header2Ref}
+          >
+            A Powerful Matter
+          </h1>
+        </section>
+        <section className="z-20 flex min-h-screen w-full flex-col items-center justify-center px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+          <h1 className="relative font-boston-angel text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl">
+            The Light Within Us
+          </h1>
+          <div className="mt-8 flex gap-8">
+            <Orb />
+          </div>
           <Orb />
-        </div>
-        <Orb />
-      </section>
-      <section className="relative z-30 my-10 flex h-full min-h-40 w-full items-center justify-center px-4">
-        <div className="relative max-w-6xl grid-cols-1 items-center gap-10">
-          <div className="mb-10 flex w-full justify-center">
-            <AboutACMX />
+        </section>
+        <section className="relative z-30 my-10 flex h-full min-h-40 w-full items-center justify-center px-4">
+          <div className="relative max-w-6xl grid-cols-1 items-center gap-10">
+            <div className="mb-10 flex w-full justify-center">
+              <AboutACMX />
+            </div>
+            <div className="flex justify-center">
+              <AboutMissionVision />
+            </div>
           </div>
-          <div className="flex justify-center">
-            <AboutMissionVision />
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="z-20 w-full flex-col px-4 py-8 leading-tight [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] sm:px-8 sm:leading-normal">
-        <h2 className="mb-6 text-center text-3xl font-bold">Meet Our Team</h2>
-        <div className="flex flex-col items-center gap-4">
-          <Accordion type="multiple">
-            <div className="self-start">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <TeamCards teamKey="about" />
-                </AccordionTrigger>
-                <AccordionContent>
-                  <AboutTeam />
-                </AccordionContent>
-              </AccordionItem>
-            </div>
-            <div className="self-end">
-              <AccordionItem value="item-2">
-                <AccordionTrigger>
-                  <TeamCards teamKey="events" />
-                </AccordionTrigger>
-                <AccordionContent>
-                  <AboutEventsTeam />
-                </AccordionContent>
-              </AccordionItem>
-            </div>
-            <div className="self-start">
-              <AccordionItem value="item-3">
-                <AccordionTrigger>
-                  <TeamCards teamKey="featured" />
-                </AccordionTrigger>
-                <AccordionContent>
-                  <AboutForumsTeam />
-                </AccordionContent>
-              </AccordionItem>
-            </div>
-            <div className="self-end">
-              <AccordionItem value="item-4">
-                <AccordionTrigger>
-                  <TeamCards teamKey="committees" />
-                </AccordionTrigger>
-                <AccordionContent>
-                  <AboutCommittees />
-                </AccordionContent>
-              </AccordionItem>
-            </div>
-          </Accordion>
-        </div>
-      </section>
-      <section className="z-50 flex w-[100vw] items-center justify-center bg-[#020024] px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
-        <AboutFooter />
-      </section>
-      <div></div>
+        <section className="z-20 w-full flex-col px-4 py-8 leading-tight [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)] sm:px-8 sm:leading-normal">
+          <h2 className="mb-6 text-center text-3xl font-bold">Meet Our Team</h2>
+          <div className="flex flex-col items-center gap-4">
+            <Accordion type="multiple">
+              <div className="self-start">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    <TeamCards teamKey="about" />
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <AboutTeam />
+                  </AccordionContent>
+                </AccordionItem>
+              </div>
+              <div className="self-end">
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>
+                    <TeamCards teamKey="events" />
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <AboutEventsTeam />
+                  </AccordionContent>
+                </AccordionItem>
+              </div>
+              <div className="self-start">
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>
+                    <TeamCards teamKey="featured" />
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <AboutForumsTeam />
+                  </AccordionContent>
+                </AccordionItem>
+              </div>
+              <div className="self-end">
+                <AccordionItem value="item-4">
+                  <AccordionTrigger>
+                    <TeamCards teamKey="committees" />
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <AboutCommittees />
+                  </AccordionContent>
+                </AccordionItem>
+              </div>
+            </Accordion>
+          </div>
+        </section>
+        <section className="z-50 flex w-[100vw] items-center justify-center bg-[#020024] px-4 py-8 leading-tight sm:px-8 sm:leading-normal">
+          <AboutFooter />
+        </section>
+      </div>
     </div>
   );
 }
