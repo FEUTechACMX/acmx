@@ -1,13 +1,14 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
+
 const serverWrapper = (
     fn: (
-        req: NextRequest,
-        res: NextResponse,
-    ) => NextResponse | Promise<NextResponse>,
+        req: NextRequest
+    ) => Promise<NextResponse>
 ) => {
-    return async (req: NextRequest, res: NextResponse) => {
+    return async (req: NextRequest) => {
         try {
-            return await fn(req, res);
+            return await fn(req);
         } catch (e) {
             return new NextResponse(e?.toString(), {
                 status: 422,
