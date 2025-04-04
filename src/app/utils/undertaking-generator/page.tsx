@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { GithubIcon, RocketIcon } from 'lucide-react';
+import { GithubIcon, Link, RocketIcon } from 'lucide-react';
 import Image from "next/image";
 import courseJSON from "public/data/json/courses.json";
 import { useEffect, useState } from 'react';
@@ -16,6 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { env } from "~/env";
 import { MAX_UNDERTAKING_IMG_SIZE, zodUndertaking } from "~/utils/zodUndertaking";
+
 export default function Component() {
     const [loading, setLoading] = useState(false);
     const [fullName, setFullName] = useState('');
@@ -126,7 +127,7 @@ export default function Component() {
     };
 
     useEffect(() => {
-        setCurrentPage(1);
+       setCurrentPage(1); 
     }, [searchTerm]);
 
     return (
