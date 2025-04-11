@@ -14,9 +14,9 @@ import { Label } from "~/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import Credits from "~/components/undertaking-generator/credits";
 import { env } from "~/env";
 import { MAX_UNDERTAKING_IMG_SIZE, zodUndertaking } from "~/utils/zodUndertaking";
-import Credits from "~/components/undertaking-generator/credits";
 
 const AnimatedGradientBackground = () => {
     return (
@@ -118,7 +118,7 @@ export default function Component() {
     const [studentNumber, setStudentNumber] = useState('');
     const [year, setYear] = useState('');
     const [program, setProgram] = useState('');
-    const [enrollmentFormat, setEnrollmentFormat] = useState('');
+    const [enrollmentFormat, setEnrollmentFormat] = useState('1');
     const [signatureImg, setSignatureImg] = useState<File | null>(null);
     const [idImg, setIdImg] = useState<File | null>(null);
     const [courses, setCourses] = useState<string[]>([]);
