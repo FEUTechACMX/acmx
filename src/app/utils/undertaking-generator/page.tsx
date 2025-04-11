@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-import { GithubIcon, RocketIcon } from 'lucide-react';
+import { GithubIcon } from 'lucide-react';
 import Image from "next/image";
 import courseJSON from "public/data/json/courses.json";
 import { useEffect, useState } from 'react';
@@ -16,6 +16,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { env } from "~/env";
 import { MAX_UNDERTAKING_IMG_SIZE, zodUndertaking } from "~/utils/zodUndertaking";
+import Credits from "~/components/undertaking-generator/credits";
+
 const AnimatedGradientBackground = () => {
     return (
         <div className="animated-gradient-container">
@@ -411,10 +413,7 @@ export default function Component() {
                         </a>
                     </div>
                     <div className="space-x-2">
-                        <RocketIcon className="h-4 w-4 inline" />
-                        <a href={`${env.NEXT_PUBLIC_HOST_URL}/data/json/contributors.json`} target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
-                            Project ACM-X Team
-                    </a>
+                        <Credits />
                     </div>
                 </div>
             </footer>
