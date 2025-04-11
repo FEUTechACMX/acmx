@@ -16,6 +16,100 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "~
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import { env } from "~/env";
 import { MAX_UNDERTAKING_IMG_SIZE, zodUndertaking } from "~/utils/zodUndertaking";
+const AnimatedGradientBackground = () => {
+    return (
+        <div className="animated-gradient-container">
+            <div className="gradient-blob blob-1"></div>
+            <div className="gradient-blob blob-2"></div>
+            <div className="gradient-blob blob-3"></div>
+            <style jsx>{`
+        .animated-gradient-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          z-index: -1;
+          opacity: 0.5;
+          filter: blur(80px);
+        }
+
+        .gradient-blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(40px);
+          opacity: 0.35;
+          mix-blend-mode: multiply;
+        }
+
+        .blob-1 {
+          background: linear-gradient(to right, rgba(126, 34, 206, 0.5), rgba(192, 38, 211, 0.5));
+          width: 60vw;
+          height: 60vw;
+          top: 20%;
+          left: 5%;
+          animation: blob-move-1 30s infinite ease-in-out alternate;
+        }
+
+        .blob-2 {
+          background: linear-gradient(to right, rgba(219, 39, 119, 0.4), rgba(236, 72, 153, 0.4));
+          width: 50vw;
+          height: 50vw;
+          top: 10%;
+          right: 10%;
+          animation: blob-move-2 40s infinite ease-in-out alternate;
+        }
+
+        .blob-3 {
+          background: linear-gradient(to right, rgba(139, 92, 246, 0.4), rgba(167, 139, 250, 0.4));
+          width: 55vw;
+          height: 55vw;
+          bottom: 5%;
+          right: 20%;
+          animation: blob-move-3 35s infinite ease-in-out alternate;
+        }
+
+        @keyframes blob-move-1 {
+          0% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(5%, 10%) scale(1.05); }
+          100% { transform: translate(-5%, 5%) scale(0.98); }
+        }
+
+        @keyframes blob-move-2 {
+          0% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(-7%, 5%) scale(1.1); }
+          100% { transform: translate(3%, -3%) scale(0.95); }
+        }
+
+        @keyframes blob-move-3 {
+          0% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(5%, -10%) scale(1.03); }
+          100% { transform: translate(-3%, 8%) scale(0.95); }
+        }
+
+        @media (max-width: 768px) {
+          .blob-1 {
+            width: 80vw;
+            height: 80vw;
+          }
+          .blob-2 {
+            width: 70vw;
+            height: 70vw;
+          }
+          .blob-3 {
+            width: 75vw;
+            height: 75vw;
+          }
+          .animated-gradient-container {
+            filter: blur(60px);
+          }
+        }
+      `}</style>
+        </div>
+    );
+};
+
 export default function Component() {
     const [loading, setLoading] = useState(false);
     const [fullName, setFullName] = useState('');
@@ -57,11 +151,11 @@ export default function Component() {
 
     const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         handleImgUpload(e, setSignatureImg);
-    }
+    };
 
     const handleIdUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         handleImgUpload(e, setIdImg);
-    }
+    };
 
     const handleCourseToggle = (courseCode: string) => {
         setCourses(prev =>
@@ -130,9 +224,10 @@ export default function Component() {
     }, [searchTerm]);
 
     return (
-        <div className="container h-screen sm:flex items-center justify-center flex-col mx-auto px-4 py-8 max-w-4xl">
+        <div className="container min-h-screen sm:flex items-center justify-center flex-col mx-auto px-4 py-8 max-w-4xl relative">
+            <AnimatedGradientBackground />
             {loading && <Spinner />}
-            <div className="flex flex-col items-center mb-4">
+            <div className="flex flex-col items-center mb-4 relative z-10">
                 <Image
                     src="/acm/FIT_ACM.png"
                     alt="FEU Tech ACM Logo"
@@ -148,13 +243,13 @@ export default function Component() {
                     Undertaking Generator
                 </motion.h1>
             </div>
-            <Card>
+            <Card className="w-full relative z-10 backdrop-blur-sm bg-opacity-80 bg-card shadow-lg">
                 <CardContent className="p-6">
                     <Tabs defaultValue="personal" className="w-full">
                         <TabsList className="grid w-full grid-cols-3">
-                            <TabsTrigger value="personal" className="text-xs sm:text-sm md:text-base">Your Information</TabsTrigger>
-                            <TabsTrigger value="courses" className="text-xs sm:text-sm md:text-base">Course Selection</TabsTrigger>
-                            <TabsTrigger value="compliance" className="text-xs sm:text-sm md:text-base">Compliance</TabsTrigger>
+                            <TabsTrigger value="personal" className="text-xs sm:text-sm">Your Information</TabsTrigger>
+                            <TabsTrigger value="courses" className="text-xs sm:text-sm">Course Selection</TabsTrigger>
+                            <TabsTrigger value="compliance" className="text-xs sm:text-sm">Compliance</TabsTrigger>
                         </TabsList>
                         <TabsContent value="personal">
                             <motion.div
@@ -304,7 +399,7 @@ export default function Component() {
                     </Tabs>
                 </CardContent>
             </Card>
-            <footer className="mt-8 text-center text-sm text-muted-foreground">
+            <footer className="mt-8 text-center text-sm text-muted-foreground relative z-10">
                 <p className="mb-2">
                     <strong>Disclaimer:</strong> This generator does not store any user data.
                 </p>
@@ -312,8 +407,8 @@ export default function Component() {
                     <div className="space-x-2">
                         <GithubIcon className="h-4 w-4 inline" />
                         <a href="https://github.com/FEUTechACMX/acmx" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">
-                        GitHub Repository
-                    </a>
+                            GitHub Repository
+                        </a>
                     </div>
                     <div className="space-x-2">
                         <RocketIcon className="h-4 w-4 inline" />
