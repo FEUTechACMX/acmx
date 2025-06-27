@@ -5,12 +5,12 @@ import { Habibi } from "@next/font/google";
 
 const habibi = Habibi({
   subsets: ["latin"],
-  weights: ["400"], // Only regular weight available
+  weight: ["400"], // Only regular weight available
 });
 
 const abhayaLibre = Abhaya_Libre({
   subsets: ["latin"],
-  weights: ["400", "700"], // Load Regular and Bold
+  weight: ["400", "700"], // Load Regular and Bold
 });
 
 const sampleuseoffonts = () => {
