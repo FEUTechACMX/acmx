@@ -1,0 +1,6 @@
+@font-face {
+  font-family: "Boston Angel";
+  src: url("/fonts/BostonAngel.ttf") format("truetype"); /* Adjust the path and format if needed */
+  font-weight: normal;
+  font-style: normal;
+}
